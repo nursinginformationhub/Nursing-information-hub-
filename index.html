@@ -4,303 +4,105 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Nursing Information Hub</title>
-<meta name="description" content="Nursing Information Hub — admissions, nursing books, past papers, notices and merit lists.">
-<!-- Visitor analytics: replace G-XXXXXXXXXX with your Google Analytics Measurement ID. -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-XXXXXXXXXX");</script>
+<meta name="description" content="Nursing Information Hub — books, past papers, study resources, merit lists and important notices.">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--teal:#106078;--teal2:#174a58;--rose:#b67283;--cream:#fffaf8;--ink:#17343d;--muted:#6d7d82;--card:#fff;--line:#e7edef}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:linear-gradient(135deg,#f4fbfc,#fff7f8);min-height:100vh}
-button,input,textarea,select{font:inherit}button{cursor:pointer}
-header{position:sticky;top:0;z-index:50;background:#ffffffed;backdrop-filter:blur(14px);border-bottom:1px solid #e9eef0}
-.nav{max-width:1440px;margin:auto;padding:13px 18px;display:flex;align-items:center;gap:14px}.brand{display:flex;align-items:center;gap:10px;flex:1;cursor:pointer}.logo{width:45px;height:45px;border-radius:14px;background:linear-gradient(145deg,var(--teal),#4d9aae);display:grid;place-items:center;color:white;font-size:23px;box-shadow:0 8px 20px #10607830}.brand b{font-size:18px;color:var(--teal2)}.brand span{display:block;font-size:11px;color:var(--muted)}
-.navlinks{display:flex;gap:5px}.navlinks button,.menu{border:0;background:transparent;padding:10px 12px;border-radius:10px;color:var(--teal2);font-weight:700}.navlinks button:hover{background:#eaf5f7}.adminBtn{background:var(--teal)!important;color:#fff!important}.menu{display:none;font-size:24px}
-.screen{display:none;max-width:1440px;margin:auto;padding:28px 18px 60px}.screen.active{display:block}
-.hero{min-height:510px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px}.badge{display:inline-flex;background:#f5e6ea;color:#8d5363;padding:8px 12px;border-radius:999px;font-weight:800;font-size:13px}.hero h1{font-size:clamp(40px,6vw,70px);line-height:.98;margin:18px 0;color:var(--teal2)}.hero h1 em{font-style:normal;color:var(--rose)}.hero p{font-size:18px;line-height:1.7;color:#5e7075;max-width:680px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.primary,.secondary{border:0;border-radius:13px;padding:13px 18px;font-weight:800}.primary{background:var(--teal);color:#fff;box-shadow:0 10px 25px #10607830}.secondary{background:#fff;color:var(--teal);border:1px solid #cfe0e4}
-.visual{position:relative;min-height:420px;display:grid;place-items:center}.blob{width:360px;height:360px;border-radius:48% 52% 55% 45%;background:linear-gradient(145deg,#dff1f4,#f5dfe5);position:absolute;animation:float 5s ease-in-out infinite}.student{position:relative;width:270px;height:340px;border-radius:135px 135px 30px 30px;background:linear-gradient(160deg,#fff,#d9eef1);display:grid;place-items:center;font-size:150px;filter:drop-shadow(0 20px 25px #174a5830);animation:float 4s ease-in-out infinite 0.5s}.book{position:absolute;padding:18px 22px;border-radius:14px;background:#fff;box-shadow:0 15px 35px #174a5820;font-weight:900;color:var(--teal2);animation:float 4s ease-in-out infinite}.book.one{top:38px;left:5px;transform:rotate(-8deg)}.book.two{right:0;bottom:65px;transform:rotate(7deg)}@keyframes float{50%{transform:translateY(-12px) rotate(1deg)}}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:#ffffffdb;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 10px 30px #174a580b}.card h3{margin:7px 0;color:var(--teal2)}.card p{color:var(--muted);line-height:1.6}.icon{font-size:32px}.sectionTitle{text-align:center;margin:15px 0 30px}.sectionTitle h2{font-size:34px;margin:5px;color:var(--teal2)}.sectionTitle p{color:var(--muted)}
-.pageHead{background:linear-gradient(135deg,#e8f5f7,#f8e9ed);border-radius:24px;padding:30px;margin-bottom:22px}.pageHead h1{margin:0 0 7px;color:var(--teal2)}.pageHead p{margin:0;color:#64767b}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.search{flex:1;min-width:220px;padding:13px 15px;border:1px solid #d7e4e7;border-radius:12px;background:#fff}
-.items{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.item{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:0 10px 25px #174a580c}.cover{height:170px;background:linear-gradient(135deg,#e6f4f6,#f4e0e6);display:grid;place-items:center;font-size:65px}.itembody{padding:17px}.itembody h3{margin:0 0 7px;color:var(--teal2)}.itembody p{color:var(--muted);line-height:1.5}.link{display:inline-block;color:var(--teal);font-weight:800;text-decoration:none;margin-top:8px}
-.form{max-width:760px;margin:auto;background:#fff;padding:25px;border-radius:20px;border:1px solid var(--line);box-shadow:0 12px 35px #174a5810}.field{margin-bottom:14px}.field label{display:block;font-weight:800;margin-bottom:6px;color:var(--teal2)}.field input,.field textarea,.field select{width:100%;padding:12px;border:1px solid #d6e3e6;border-radius:11px;outline:none}.field textarea{min-height:120px;resize:vertical}.notice{background:#fff7f8;border-left:5px solid var(--rose);padding:18px;border-radius:12px;margin-bottom:15px}.muted{color:var(--muted)}
-.adminTop{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.adminTabs{display:flex;gap:7px;overflow:auto;padding:10px 0}.adminTabs button{border:1px solid #d6e3e6;background:#fff;padding:10px 14px;border-radius:10px;font-weight:800;color:var(--teal2)}.adminTabs button.active{background:var(--teal);color:#fff}.adminList{display:grid;gap:10px}.adminRow{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:10px}.danger{background:#f7e4e8!important;color:#8b4b5c!important;border:0;border-radius:9px;padding:8px 11px;font-weight:800}.smallBtn{border:0;background:#eaf5f7;color:var(--teal2);padding:8px 11px;border-radius:9px;font-weight:800}
-.modal{position:fixed;inset:0;background:#0d2630a8;z-index:100;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modalBox{background:#fff;width:min(520px,100%);border-radius:22px;padding:25px;position:relative}.close{position:absolute;right:15px;top:12px;border:0;background:#f1f5f6;border-radius:50%;width:35px;height:35px}.error{background:#fff0f2;color:#8a4657;padding:10px;border-radius:10px;margin-bottom:10px;display:none}.ok{background:#edf8f1;color:#28734b;padding:10px;border-radius:10px;margin-bottom:10px;display:none}
-.mobileMenu{position:fixed;top:0;right:-320px;width:300px;height:100vh;background:#fff;z-index:90;box-shadow:-12px 0 35px #0003;padding:18px;display:flex;flex-direction:column;gap:8px;transition:.3s}.mobileMenu.open{right:0}.mobileMenu button{border:0;background:#f1f7f8;color:var(--teal2);padding:14px;border-radius:11px;text-align:left;font-weight:800}.drawerShade{display:none;position:fixed;inset:0;background:#0007;z-index:80}.drawerShade.open{display:block}
-footer{background:#123d49;color:#dcebef;text-align:center;padding:30px 18px;margin-top:30px}footer b{color:#fff}
-@media(max-width:850px){.navlinks{display:none}.menu{display:block}.hero{grid-template-columns:1fr;text-align:center}.hero p{margin:auto}.actions{justify-content:center}.visual{min-height:390px}.grid{grid-template-columns:repeat(2,1fr)}.items{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.screen{padding:20px 13px 45px}.grid,.items{grid-template-columns:1fr}.student{width:220px;height:285px;font-size:120px}.blob{width:300px;height:300px}.hero h1{font-size:44px}.pageHead{padding:22px}}
-</style>
-<style>
 :root{
-  --teal:#0876c9;--teal2:#063b72;--rose:#19a7e8;--cream:#f5fbff;
-  --ink:#102f4d;--muted:#60778c;--card:#fff;--line:#d9eaf6
+  --navy:#031c3b;--navy2:#062d58;--blue:#0879d1;--cyan:#16d6c1;--cyan2:#11b7e8;
+  --white:#fff;--soft:#f5fbff;--muted:#63778c;--purple:#7c3aed;--gold:#f4b62b;
+  --line:#dcebf5;--shadow:0 18px 50px rgba(2,44,85,.12)
 }
-body{
-  background:
-    radial-gradient(circle at 10% 10%,#e5f5ff 0,transparent 32%),
-    radial-gradient(circle at 90% 15%,#dff2ff 0,transparent 30%),
-    linear-gradient(135deg,#f4fbff,#eef7ff 52%,#f9fcff);
-}
-header{background:#ffffffeb;border-bottom:1px solid #cfe6f6;box-shadow:0 4px 22px #075b8b14}
-.logo{background:linear-gradient(145deg,#075fa5,#20a9ed);box-shadow:0 10px 25px #0876c938}
-.brand b,.hero h1,.sectionTitle h2,.pageHead h1,.itembody h3,.card h3{color:var(--teal2)}
-.navlinks button{color:var(--teal2)}
-.navlinks button:hover{background:#e5f4ff}
-.adminBtn,.primary{background:linear-gradient(135deg,#086bc0,#10a6e8)!important}
-.secondary{color:#086bc0;border-color:#c4e2f4}
-.badge{background:#e4f4ff;color:#0769ae}
-.hero h1 em{color:#078bd0}
-.hero p{color:#58728a}
-.hero{min-height:550px}
-.visual{min-height:470px;overflow:hidden}
-.heroGlow{
-  position:absolute;width:430px;height:430px;border-radius:50%;
-  background:radial-gradient(circle,#bcecff 0,#dff6ff 48%,transparent 70%);
-  animation:glowPulse 5s ease-in-out infinite;
-}
-.imageTrack{position:relative;width:100%;height:430px}
-.heroImage{
-  position:absolute;width:265px;height:335px;border-radius:28px;overflow:hidden;
-  background:#fff;border:7px solid #fff;box-shadow:0 22px 50px #075b8b2b;
-  opacity:0;animation:slideImages 16s linear infinite;
-}
-.heroImage img{width:100%;height:100%;object-fit:cover}
-.heroImage span{
-  position:absolute;left:12px;right:12px;bottom:12px;padding:10px 13px;
-  border-radius:14px;background:#063b72dc;color:#fff;font-weight:800;
-  backdrop-filter:blur(8px);text-align:center
-}
-.heroImage1{animation-delay:0s}
-.heroImage2{animation-delay:4s}
-.heroImage3{animation-delay:8s}
-.heroImage4{animation-delay:12s}
-.floatingBadge{
-  position:absolute;padding:11px 15px;background:#fff;border:1px solid #d5eaf7;
-  border-radius:15px;color:#063b72;font-weight:900;box-shadow:0 12px 30px #075b8b1c;
-  z-index:5
-}
-.badgeA{top:45px;left:0;animation:badgeFloat 4s ease-in-out infinite}
-.badgeB{right:0;top:180px;animation:badgeFloat 4s ease-in-out infinite .8s}
-.badgeC{left:35px;bottom:30px;animation:badgeFloat 4s ease-in-out infinite 1.5s}
-.card,.item,.form{border-color:#d8eaf6;box-shadow:0 12px 35px #075b8b0d}
-.card:hover,.item:hover{transform:translateY(-6px);transition:.3s;box-shadow:0 18px 42px #075b8b18}
-.pageHead{background:linear-gradient(135deg,#e3f4ff,#f1f9ff);border:1px solid #d2eafa}
-.cover{background:linear-gradient(135deg,#e3f5ff,#d9efff)}
-.notice{background:#eef8ff;border-left-color:#0b8bd3}
-.link{color:#0876c9}
-.adminTabs button.active{background:#0876c9}
-footer{background:linear-gradient(135deg,#052e5b,#0876c9)}
-@keyframes glowPulse{50%{transform:scale(1.08);opacity:.75}}
-@keyframes badgeFloat{50%{transform:translateY(-12px) rotate(1deg)}}
-@keyframes slideImages{
-  0%{opacity:0;transform:translateX(115%) scale(.82) rotate(5deg)}
-  8%{opacity:1}
-  25%{opacity:1;transform:translateX(0) scale(1) rotate(-2deg)}
-  34%{opacity:0;transform:translateX(-115%) scale(.82) rotate(-5deg)}
-  100%{opacity:0;transform:translateX(-115%) scale(.82) rotate(-5deg)}
-}
-@media(max-width:850px){
-  .hero{min-height:auto}
-  .visual{min-height:430px}
-  .heroImage{width:235px;height:300px}
-  .badgeA{left:5px}.badgeB{right:5px}.badgeC{left:10px}
-}
-@media(max-width:560px){
-  .visual{min-height:390px}
-  .heroImage{width:205px;height:270px}
-  .floatingBadge{font-size:12px;padding:8px 10px}
-  .badgeA{top:20px}.badgeB{top:145px}.badgeC{bottom:10px}
-}
-</style>
-<style>
-.blueTicker{height:32px;overflow:hidden;background:linear-gradient(90deg,#063b72,#0876c9,#10a6e8,#0876c9,#063b72);color:#fff;display:flex;align-items:center;gap:42px;white-space:nowrap;font-size:12px;font-weight:800;letter-spacing:.3px;box-shadow:0 3px 12px #075b8b22}
-.blueTicker span{animation:tickerMove 10s linear infinite}
-.blueTicker span:nth-child(2){animation-delay:-2s}.blueTicker span:nth-child(3){animation-delay:-4s}.blueTicker span:nth-child(4){animation-delay:-6s}.blueTicker span:nth-child(5){animation-delay:-8s}
-@keyframes tickerMove{0%{transform:translateX(100vw)}100%{transform:translateX(-130vw)}}
-</style>
-<style>
-.studyIntro{
-  display:flex;align-items:center;gap:18px;margin-bottom:25px;
-  background:linear-gradient(135deg,#e5f6ff,#f5fbff);
-}
-.studyIcon{
-  width:65px;height:65px;border-radius:18px;display:grid;place-items:center;
-  font-size:34px;background:linear-gradient(145deg,#0876c9,#20a9ed);
-  box-shadow:0 12px 25px #0876c92c;flex:none
-}
-.studyIntro h2{margin:0 0 5px;color:var(--teal2)}
-.cardLink{display:inline-block;margin-top:7px;color:#0876c9;font-weight:900}
-.studyCard{transition:.3s}
-.studyCard:hover .icon{transform:scale(1.12);transition:.3s}
-</style>
-<style>/* ===== PREMIUM NURSING HUB REDESIGN ===== */
-:root{--navy:#052b57;--blue:#0879d1;--cyan:#19b5ee;--text:#102d4a;--muted2:#60758a;--border:#d6eafa}
-body{background:radial-gradient(circle at 5% 5%,#dff4ff 0,transparent 28%),radial-gradient(circle at 95% 8%,#dff8ff 0,transparent 30%),linear-gradient(135deg,#f7fcff 0%,#eaf7ff 48%,#fff 100%);color:var(--text)}
-header{background:#ffffffea;border-bottom:1px solid #cfe6f8;box-shadow:0 6px 30px #0a57901a}.nav{padding:12px 24px}.brand b{font-size:19px;color:var(--navy)}.brand span{color:#688198}.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(145deg,var(--navy),var(--blue) 60%,var(--cyan));box-shadow:0 12px 28px #0879d133}
-.navlinks{gap:7px}.navlinks button{padding:11px 13px;border-radius:12px;color:var(--navy);transition:.2s}.navlinks button:hover{background:#e7f5ff;transform:translateY(-1px)}
-.screen{padding:34px 28px 70px}.hero{min-height:620px;grid-template-columns:1.05fr .95fr;gap:50px}.hero h1{font-size:clamp(48px,5.5vw,82px);letter-spacing:-2px;color:var(--navy)}.hero h1 em{color:var(--blue)}.hero p{font-size:19px;max-width:720px;color:#58708a}.badge{background:#e2f4ff;color:#086db5;border:1px solid #c8e8fa;box-shadow:0 8px 25px #0879d10e}
-.primary{background:linear-gradient(135deg,#066bc1,#12acec)!important;box-shadow:0 14px 30px #0879d13b}.secondary{background:#fff;border:1px solid #c8e1f2;color:var(--navy);box-shadow:0 8px 20px #0a57900e}.primary,.secondary{border-radius:15px;padding:14px 20px}.visual{min-height:520px}.heroGlow{width:500px;height:500px;background:radial-gradient(circle,#bdeaff 0,#dff6ff 45%,transparent 72%)}.heroImage{width:310px;height:390px;border-radius:32px;border:8px solid #fff;box-shadow:0 28px 70px #075b8b33}.heroImage span{background:#052b57e8;border-radius:16px}.floatingBadge{border:1px solid #cfe8f7;box-shadow:0 16px 35px #075b8b1a;color:var(--navy)}
-.sectionTitle{margin:20px 0 34px}.sectionTitle h2{font-size:40px;color:var(--navy)}.grid{gap:20px}.card{background:linear-gradient(145deg,#ffffffed,#f7fcff);border:1px solid var(--border);border-radius:22px;padding:24px;box-shadow:0 14px 38px #075b8b0d;transition:.25s}.card:hover,.item:hover{transform:translateY(-7px);box-shadow:0 22px 50px #075b8b18}.card h3{font-size:20px;color:var(--navy)}.card p{color:var(--muted2)}
-.pageHead{background:linear-gradient(135deg,#dff3ff,#f5fbff 55%,#e8f8ff);border:1px solid #cfe8f8;box-shadow:0 14px 35px #075b8b0b;padding:36px;border-radius:28px}.pageHead h1{font-size:40px;color:var(--navy)}.items{gap:20px}.item{border:1px solid var(--border);border-radius:20px;box-shadow:0 12px 32px #075b8b0c;transition:.25s}.cover{height:190px;background:linear-gradient(135deg,#e1f5ff,#d8efff)}.form{border:1px solid var(--border);box-shadow:0 16px 42px #075b8b0e}.search{border:1px solid #cfe4f2;box-shadow:0 8px 22px #075b8b08}.blueTicker{height:34px;background:linear-gradient(90deg,#052b57,#0879d1,#19b5ee,#0879d1,#052b57)}footer{background:linear-gradient(135deg,#052b57,#086bc1,#10a8e7);padding:36px 18px;margin-top:40px}
-@media(min-width:1200px){.hero{padding:20px 20px}}@media(max-width:900px){.screen{padding:28px 18px 55px}.hero{grid-template-columns:1fr;text-align:center;min-height:auto}.hero p{margin:auto}.actions{justify-content:center}.grid,.items{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.screen{padding:20px 13px 45px}.hero h1{font-size:44px;letter-spacing:-1px}.sectionTitle h2{font-size:30px}.grid,.items{grid-template-columns:1fr}.heroImage{width:215px;height:285px}.visual{min-height:390px}.heroGlow{width:320px;height:320px}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#102d4a;background:linear-gradient(180deg,#f7fcff,#fff);overflow-x:hidden}button,input,textarea,select{font:inherit}button{cursor:pointer}a{text-decoration:none}
+.topbar{height:36px;background:#02162f;color:#e9f4ff;font-size:12px}.topbar-inner{max-width:1250px;margin:auto;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 18px}.top-left,.socials{display:flex;align-items:center;gap:14px}.top-left span{opacity:.92}.socials span{width:19px;height:19px;display:grid;place-items:center;border-radius:50%;font-size:10px;background:#0c3b6a}
+header{position:sticky;top:0;z-index:80;background:rgba(3,28,59,.97);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 8px 28px rgba(0,0,0,.12)}.nav{max-width:1250px;margin:auto;min-height:78px;padding:10px 18px;display:flex;align-items:center;gap:24px}.brand{display:flex;align-items:center;gap:11px;flex:1;color:#fff;cursor:pointer}.logo{width:46px;height:46px;border:2px solid var(--cyan);border-radius:15px;display:grid;place-items:center;font-size:24px;color:var(--cyan);background:rgba(10,190,190,.08);box-shadow:0 0 25px rgba(22,214,193,.12)}.brand b{font-size:19px;line-height:1}.brand small{display:block;margin-top:5px;color:#a8bfd4;font-size:10px;letter-spacing:.2px}.navlinks{display:flex;gap:2px;align-items:center}.navlinks button{border:0;background:transparent;color:#f0f6fc;padding:11px 12px;border-radius:9px;font-weight:700;font-size:14px;transition:.25s}.navlinks button:hover,.navlinks button.active{background:rgba(22,214,193,.09);color:var(--cyan)}.adminBtn{border:0!important;border-radius:28px!important;padding:12px 22px!important;background:linear-gradient(135deg,#15cfae,#13c4d9)!important;color:#032844!important;box-shadow:0 10px 25px rgba(22,214,193,.2)}.menu{display:none;border:0;background:transparent;color:#fff;font-size:28px}
+.ticker{height:31px;background:linear-gradient(90deg,#052a55,#0879d1,#16cdbd,#0879d1,#052a55);color:#fff;display:flex;align-items:center;overflow:hidden;white-space:nowrap;font-size:11px;font-weight:800}.ticker-track{display:flex;gap:60px;min-width:max-content;animation:ticker 22s linear infinite}@keyframes ticker{to{transform:translateX(-50%)}}
+.screen{display:none}.screen.active{display:block}.container{max-width:1250px;margin:auto;padding:0 18px}
+.hero{position:relative;min-height:570px;background:radial-gradient(circle at 78% 50%,rgba(21,166,224,.2),transparent 34%),linear-gradient(120deg,#031d3e 0%,#063c6d 58%,#075a83 100%);color:#fff;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 55%,rgba(21,214,193,.1));pointer-events:none}.hero-inner{max-width:1250px;margin:auto;min-height:570px;padding:52px 18px 40px;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:30px;position:relative;z-index:2}.eyebrow{display:inline-flex;gap:8px;align-items:center;color:#19d9c1;font-weight:800;font-size:13px;margin-bottom:12px}.hero h1{font-size:clamp(45px,5.6vw,76px);line-height:.98;letter-spacing:-2.5px;margin:0 0 20px;max-width:650px}.hero h1 .accent{color:#13d8c0}.hero p{font-size:16px;line-height:1.7;color:#d5e5f1;max-width:610px;margin:0}.actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:26px}.primary,.secondary{border-radius:28px;padding:13px 20px;font-weight:900;border:0}.primary{background:linear-gradient(135deg,#17d6bd,#0fb6e7);color:#032846;box-shadow:0 14px 30px rgba(15,210,190,.2)}.secondary{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff}.trust{display:flex;gap:28px;margin-top:28px;flex-wrap:wrap}.trust-item{display:flex;align-items:center;gap:9px;color:#e7f3fb;font-size:12px}.trust-icon{width:31px;height:31px;border:1px solid rgba(255,255,255,.22);border-radius:50%;display:grid;place-items:center;color:#15d9c1}
+.visual{position:relative;min-height:485px;display:grid;place-items:center}.hero-circle{position:absolute;width:485px;height:485px;border-radius:50%;right:10px;background:radial-gradient(circle at 50% 42%,rgba(255,255,255,.1),rgba(9,159,191,.1) 52%,transparent 70%);border:1px solid rgba(255,255,255,.13);animation:circlePulse 7s ease-in-out infinite}.hero-ring{position:absolute;width:580px;height:260px;border:1px solid rgba(25,216,194,.32);border-radius:50%;transform:rotate(-18deg);right:-10px;bottom:40px}.hero-ring:after{content:"";position:absolute;inset:20px 30px;border:1px solid rgba(25,216,194,.18);border-radius:50%}.imageTrack{position:relative;width:440px;height:450px}.heroImage{position:absolute;width:360px;height:420px;right:25px;top:8px;border-radius:45% 45% 30% 30%;overflow:hidden;border:7px solid rgba(255,255,255,.9);box-shadow:0 30px 70px rgba(0,0,0,.3);opacity:0;animation:heroSlide 20s infinite ease-in-out}.heroImage img{width:100%;height:100%;object-fit:cover}.heroImage:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(1,25,52,.7))}.heroImage span{position:absolute;z-index:2;left:20px;right:20px;bottom:18px;padding:11px 13px;border-radius:13px;background:rgba(3,28,59,.78);backdrop-filter:blur(8px);font-weight:900;text-align:center}.heroImage:nth-child(1){animation-delay:0s}.heroImage:nth-child(2){animation-delay:5s}.heroImage:nth-child(3){animation-delay:10s}.heroImage:nth-child(4){animation-delay:15s}@keyframes heroSlide{0%{opacity:0;transform:translateX(85px) scale(.9) rotate(3deg)}8%{opacity:1}25%{opacity:1;transform:translateX(0) scale(1) rotate(0)}33%{opacity:0;transform:translateX(-90px) scale(.9) rotate(-3deg)}100%{opacity:0;transform:translateX(-90px) scale(.9)}}@keyframes circlePulse{50%{transform:scale(1.04);opacity:.8}}
+.floatCard{position:absolute;z-index:6;width:205px;background:#fff;color:#102d4a;border-radius:16px;padding:13px;display:flex;align-items:center;gap:11px;box-shadow:0 18px 40px rgba(0,0,0,.2);animation:float 4.5s ease-in-out infinite}.floatCard .ficon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:21px}.floatCard b{font-size:12px}.floatCard small{display:block;color:#66798b;font-size:10px;line-height:1.35;margin-top:3px}.fc1{left:-10px;top:75px}.fc2{right:-5px;top:170px;animation-delay:.8s}.fc3{left:20px;bottom:40px;animation-delay:1.5s}.green{background:#ddf8ef}.purple{background:#eee3ff}.lightblue{background:#e1f4ff}@keyframes float{50%{transform:translateY(-12px)}}
+.home-content{background:#fff}.sectionTitle{text-align:center;padding:40px 0 20px}.mini{font-size:12px;color:#0879b9;font-weight:900}.sectionTitle h2{font-size:34px;line-height:1.1;margin:8px 0;color:#062d58}.sectionTitle h2 span{color:#0cae9e}.sectionTitle p{color:var(--muted);margin:0}.featureGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:0 0 30px}.featureCard{border:1px solid #e2edf4;background:#fff;border-radius:18px;padding:21px;box-shadow:0 8px 25px rgba(4,51,87,.08);transition:.3s}.featureCard:hover{transform:translateY(-7px);box-shadow:0 20px 38px rgba(4,51,87,.13)}.featureIcon{width:49px;height:49px;border-radius:14px;display:grid;place-items:center;font-size:25px;margin-bottom:12px}.featureCard h3{margin:0 0 7px;color:#092f58;font-size:16px}.featureCard p{margin:0;color:#6a7d90;font-size:12px;line-height:1.55}.featureCard a{display:inline-block;margin-top:13px;font-size:12px;font-weight:900;color:#0787aa}.fi1{background:#dcf7ee;color:#12a886}.fi2{background:#dff1ff;color:#0879d1}.fi3{background:#eee4ff;color:#7c3aed}.fi4{background:#fff1d8;color:#e39a0a}
+.stats{background:#e8fbfa;padding:0 0 8px}.statsBar{max-width:1150px;margin:auto;transform:translateY(-2px);background:linear-gradient(100deg,#052b57,#075e80);border-radius:28px;padding:18px 25px;display:grid;grid-template-columns:repeat(4,1fr);box-shadow:0 18px 40px rgba(0,55,90,.18)}.stat{display:flex;align-items:center;justify-content:center;gap:11px;color:#fff;border-right:1px solid rgba(255,255,255,.22)}.stat:last-child{border:0}.statIcon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#16d6c1,#12a9e9);font-size:19px}.stat b{font-size:20px;display:block}.stat small{color:#c4d7e7;font-size:10px}
+.screen:not(#home){background:linear-gradient(135deg,#f4fbff,#fff);min-height:620px;padding:35px 0 70px}.pageHead{max-width:1250px;margin:0 auto 22px;padding:30px 18px;border-radius:24px;background:linear-gradient(135deg,#e2f6ff,#f5ffff);border:1px solid #d5eaf6}.pageHead h1{margin:0 0 7px;color:#062d58;font-size:36px}.pageHead p{margin:0;color:#61788c}.toolbar{max-width:1250px;margin:0 auto 20px;padding:0 18px;display:flex;gap:10px}.search{flex:1;padding:13px 15px;border:1px solid #d6e6ef;border-radius:12px;outline:none;background:#fff}.items{max-width:1250px;margin:auto;padding:0 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.item,.card,.form{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.item{overflow:hidden;transition:.3s}.item:hover{transform:translateY(-6px)}.cover{height:180px;background:linear-gradient(135deg,#e2f5ff,#e5f7f4);display:grid;place-items:center;font-size:65px}.cover img{width:100%;height:100%;object-fit:cover}.itembody{padding:17px}.itembody h3{margin:0 0 7px;color:#062d58}.itembody p{color:#64788a;line-height:1.5;font-size:13px}.link{display:inline-block;margin-top:8px;color:#0879d1;font-weight:900}.studyIntro,.form{max-width:1250px;margin:0 auto 20px;padding:22px}.notice{max-width:1250px;margin:0 auto 14px;padding:18px;background:#eef9ff;border-left:5px solid #0a8ed4;border-radius:12px}.notice h3{margin:0;color:#062d58}.muted{color:#687c8e}.adminTabs{max-width:1250px;margin:auto;padding:0 18px 18px;display:flex;gap:8px;overflow:auto}.adminTabs button{border:1px solid #d3e6f0;background:#fff;color:#062d58;padding:10px 14px;border-radius:10px;font-weight:800;white-space:nowrap}.adminTabs button.active{background:#0879d1;color:#fff}.adminArea{max-width:1250px;margin:auto;padding:0 18px}.adminRow{background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px;margin:8px 0;display:flex;justify-content:space-between;gap:10px;align-items:center}.smallBtn,.danger{border:0;border-radius:9px;padding:8px 11px;font-weight:800}.smallBtn{background:#e6f5ff;color:#075d9d}.danger{background:#ffe7eb;color:#a43e50}.field{margin-bottom:13px}.field label{display:block;font-weight:800;color:#092f58;margin-bottom:6px}.field input,.field textarea{width:100%;padding:12px;border:1px solid #d6e6ef;border-radius:10px}.field textarea{min-height:110px}.modal{position:fixed;inset:0;background:#00172bbb;z-index:120;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modalBox{background:#fff;width:min(520px,100%);padding:25px;border-radius:20px;position:relative}.close{position:absolute;right:14px;top:12px;border:0;border-radius:50%;width:34px;height:34px}.error{display:none;background:#fff0f2;color:#9b4051;padding:10px;border-radius:9px;margin-bottom:10px}
+footer{background:linear-gradient(135deg,#031a37,#06416a);color:#c9dceb;margin-top:0;padding:36px 0 16px}.footerGrid{max-width:1250px;margin:auto;padding:0 18px;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:30px}.footerBrand{font-size:18px;color:#fff;font-weight:900}.footerBrand span{display:block;color:#16d6c1}.footerCol h4{color:#fff;margin:0 0 12px}.footerCol p,.footerCol a{display:block;color:#c1d5e4;font-size:12px;margin:7px 0}.copyright{border-top:1px solid rgba(255,255,255,.12);margin-top:25px;padding:14px 18px 0;display:flex;justify-content:space-between;max-width:1250px;margin-left:auto;margin-right:auto;font-size:11px}.copyright span:last-child{color:#d7e7f1}
+.mobileMenu{position:fixed;z-index:110;right:-320px;top:0;width:300px;height:100vh;background:#052b57;padding:20px;transition:.3s;display:flex;flex-direction:column;gap:8px;box-shadow:-15px 0 40px rgba(0,0,0,.25)}.mobileMenu.open{right:0}.mobileMenu button{border:0;background:#0a3d6d;color:#fff;padding:13px;border-radius:10px;text-align:left;font-weight:800}.drawerShade{position:fixed;inset:0;background:#0008;z-index:100;display:none}.drawerShade.open{display:block}
+@media(max-width:1000px){.navlinks{display:none}.menu{display:block}.hero-inner{grid-template-columns:1fr;text-align:center;padding-top:45px}.hero p{margin:auto}.actions,.trust{justify-content:center}.visual{min-height:470px}.featureGrid{grid-template-columns:repeat(2,1fr)}.items{grid-template-columns:repeat(2,1fr)}.footerGrid{grid-template-columns:repeat(2,1fr)}.statsBar{margin:0 18px}}
+@media(max-width:620px){.topbar{display:none}.nav{min-height:68px;padding:9px 13px}.brand b{font-size:15px}.brand small{font-size:9px}.logo{width:42px;height:42px}.hero{min-height:720px}.hero-inner{min-height:720px;padding:38px 14px 20px}.hero h1{font-size:44px;letter-spacing:-1.5px}.hero p{font-size:14px}.visual{min-height:390px}.hero-circle{width:340px;height:340px}.hero-ring{width:420px;height:190px}.imageTrack{width:320px;height:340px}.heroImage{width:245px;height:315px;right:37px}.floatCard{width:150px;padding:9px;font-size:10px}.floatCard .ficon{width:34px;height:34px;font-size:17px}.fc1{left:-5px;top:30px}.fc2{right:-4px;top:125px}.fc3{left:2px;bottom:5px}.sectionTitle{padding-top:30px}.sectionTitle h2{font-size:28px}.featureGrid,.items{grid-template-columns:1fr}.statsBar{grid-template-columns:1fr 1fr;border-radius:20px;padding:12px}.stat{padding:10px 5px;border-right:0}.stat b{font-size:16px}.footerGrid{grid-template-columns:1fr}.copyright{flex-direction:column;gap:8px}.pageHead h1{font-size:28px}.adminRow{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<div class="nav">
-  <div class="brand" onclick="go('home')"><div class="logo">🩺</div><div><b>Nursing Information Hub</b><span>Learn • Prepare • Succeed</span></div></div>
-  <div class="navlinks">
-    <button onclick="go('home')">Home</button><button onclick="go('study')">Study Resources</button><button onclick="go('books')">Books</button><button onclick="go('papers')">Past Papers</button><button onclick="go('notice')">Information</button><button onclick="go('contact')">Contact</button>
-  </div>
-  <button class="menu" onclick="toggleMenu()">☰</button>
-</div>
-</header>
-<div class="blueTicker"><span>🩺 Nursing Information Hub</span><span>📚 Books</span><span>📝 Past Papers</span><span>🎓 Student Resources</span><span>📢 Important Information</span></div>
-
-<div id="mobileMenu" class="mobileMenu">
-  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 2px 16px;color:var(--teal2)"><b>🩺 Nursing Information Hub</b><button onclick="toggleMenu()">×</button></div>
-  <button onclick="go('home');toggleMenu()">🏠 Home</button><button onclick="go('study');toggleMenu()">🧠 Study Resources</button><button onclick="go('books');toggleMenu()">📚 Nursing Books</button><button onclick="go('papers');toggleMenu()">📝 Past Papers</button><button onclick="go('notice');toggleMenu()">📢 Important Information</button><button onclick="go('contact');toggleMenu()">☎️ Contact Us</button>
-</div>
-<div id="drawerShade" class="drawerShade" onclick="toggleMenu()"></div>
+<div class="topbar"><div class="topbar-inner"><div class="top-left"><span>✉ info@nursinghub.com</span><span>|</span><span>☎ +92 300 1234567</span></div><div class="socials"><span>f</span><span>◎</span><span>▶</span><span>◉</span></div></div></div>
+<header><div class="nav"><div class="brand" onclick="go('home')"><div class="logo">♡</div><div><b>Nursing Information Hub</b><small>Learn • Prepare • Succeed</small></div></div><div class="navlinks"><button data-screen="home" onclick="go('home')">Home</button><button data-screen="study" onclick="go('study')">Study Resources⌄</button><button data-screen="books" onclick="go('books')">Books</button><button data-screen="papers" onclick="go('papers')">Past Papers</button><button data-screen="notice" onclick="go('notice')">Information⌄</button><button data-screen="contact" onclick="go('contact')">Contact</button><button class="adminBtn" onclick="openAdmin()">Manage Portal</button></div><button class="menu" onclick="toggleMenu()">☰</button></div></header>
+<div class="ticker"><div class="ticker-track"><span>🎓 Nursing students' learning space</span><span>📚 Study Resources</span><span>📝 Past Papers</span><span>🩺 Nursing Books</span><span>📢 Important Information</span><span>🎓 Nursing students' learning space</span><span>📚 Study Resources</span><span>📝 Past Papers</span><span>🩺 Nursing Books</span></div></div>
+<div id="mobileMenu" class="mobileMenu"><button onclick="go('home');toggleMenu()">🏠 Home</button><button onclick="go('study');toggleMenu()">🎓 Study Resources</button><button onclick="go('books');toggleMenu()">📚 Nursing Books</button><button onclick="go('papers');toggleMenu()">📝 Past Papers</button><button onclick="go('notice');toggleMenu()">📢 Important Information</button><button onclick="go('contact');toggleMenu()">☎ Contact Us</button><button onclick="openAdmin();toggleMenu()">⚙ Manage Portal</button></div><div id="drawerShade" class="drawerShade" onclick="toggleMenu()"></div>
 
 <main>
 <section id="home" class="screen active">
-<div class="hero">
-  <div>
-    <span class="badge">🩺 Nursing students' learning space</span>
-    <h1>Welcome to <em>Nursing Information Hub</em></h1>
-    <p>A clean, student-friendly place for nursing useful nursing books, past papers, merit lists and important notices — all in one hub.</p>
-    <div class="actions"><button class="primary" onclick="go('books')">Explore Nursing Books →</button><button class="secondary" onclick="go('papers')">View Past Papers</button></div>
-  </div>
-  <div class="visual">
-  <div class="heroGlow"></div>
-  <div class="imageTrack">
-    <div class="heroImage heroImage1">
-      <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=85" alt="Nursing student studying">
-      <span>🩺 Nursing Students</span>
-    </div>
-    <div class="heroImage heroImage2">
-      <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=900&q=85" alt="Books and study">
-      <span>📚 Nursing Books</span>
-    </div>
-    <div class="heroImage heroImage3">
-      <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=900&q=85" alt="Medical books">
-      <span>📖 Study Resources</span>
-    </div>
-    <div class="heroImage heroImage4">
-      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85" alt="Students studying together">
-      <span>🎓 Learn Together</span>
-    </div>
-  </div>
-  <div class="floatingBadge badgeA">🧠 Pathophysiology</div>
-  <div class="floatingBadge badgeB">📝 Past Papers</div>
-  <div class="floatingBadge badgeC">✨ Smart Learning</div>
+<div class="hero"><div class="hero-inner"><div>
+<div class="eyebrow">🎓 Nursing students' learning space</div>
+<h1>Welcome to <span class="accent">Nursing Information</span> Hub</h1>
+<p>A clean, student-friendly place for nursing books, past papers, merit lists and important notices — all in one hub.</p>
+<div class="actions"><button class="primary" onclick="go('books')">Explore Nursing Books &nbsp;➜</button><button class="secondary" onclick="go('papers')">▣ &nbsp; View Past Papers</button></div>
+<div class="trust"><div class="trust-item"><span class="trust-icon">✓</span><span><b>Trusted Content</b><br>Quality resources</span></div><div class="trust-item"><span class="trust-icon">♟</span><span><b>Student Focused</b><br>Made for nursing students</span></div><div class="trust-item"><span class="trust-icon">↻</span><span><b>Always Updated</b><br>Fresh & reliable info</span></div></div>
 </div>
+<div class="visual"><div class="hero-circle"></div><div class="hero-ring"></div><div class="imageTrack">
+<div class="heroImage"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=90" alt="Nursing student"><span>🩺 Nursing Students</span></div>
+<div class="heroImage"><img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=90" alt="Nurse studying"><span>📚 Smart Nursing Study</span></div>
+<div class="heroImage"><img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=900&q=90" alt="Books and study"><span>📖 Nursing Books</span></div>
+<div class="heroImage"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=90" alt="Students studying"><span>🎓 Learn Together</span></div>
 </div>
-<div class="sectionTitle"><h2>Everything Nursing Students Need</h2><p>Quick access to the most useful sections.</p></div>
-<div class="grid">
-<div class="card studyCard" onclick="go('study')" style="cursor:pointer"><div class="icon">🧠</div><h3>Study Resources</h3><p>Books, past papers and useful nursing learning resources.</p><span class="cardLink">Open Study Resources →</span></div>
-<div class="card" onclick="go('books')" style="cursor:pointer"><div class="icon">📚</div><h3>Nursing Books</h3><p>Find your subjects and open the resource added by the admin.</p></div>
-<div class="card" onclick="go('papers')" style="cursor:pointer"><div class="icon">📝</div><h3>Past Papers</h3><p>Previous papers organized for quick revision and preparation.</p></div>
-<div class="card" onclick="go('notice')" style="cursor:pointer"><div class="icon">📢</div><h3>Important Information</h3><p>Notices, merit lists and important updates in one place.</p></div>
-</div>
+<div class="floatCard fc1"><div class="ficon green">📚</div><div><b>Study Resources</b><small>Books, notes, guides and more</small></div></div>
+<div class="floatCard fc2"><div class="ficon purple">📝</div><div><b>Past Papers</b><small>Previous papers for better preparation</small></div></div>
+<div class="floatCard fc3"><div class="ficon lightblue">✦</div><div><b>Smart Learning</b><small>Learn together, succeed together</small></div></div>
+</div></div></div>
+<div class="home-content"><div class="container"><div class="sectionTitle"><div class="mini">♧ Everything in One Place</div><h2>Everything <span>Nursing Students</span> Need</h2><p>Quick access to the most useful sections.</p></div>
+<div class="featureGrid">
+<div class="featureCard" onclick="go('study')" style="cursor:pointer"><div class="featureIcon fi1">📚</div><h3>Study Resources</h3><p>Books, past papers and useful nursing learning resources.</p><a>Open Study Resources →</a></div>
+<div class="featureCard" onclick="go('books')" style="cursor:pointer"><div class="featureIcon fi2">▱</div><h3>Nursing Books</h3><p>Find your subjects and open the resource added by the admin.</p><a>Browse Books →</a></div>
+<div class="featureCard" onclick="go('papers')" style="cursor:pointer"><div class="featureIcon fi3">▤</div><h3>Past Papers</h3><p>Previous papers organized for quick revision and preparation.</p><a>View Past Papers →</a></div>
+<div class="featureCard" onclick="go('notice')" style="cursor:pointer"><div class="featureIcon fi4">●</div><h3>Important Information</h3><p>Notices, merit lists and important updates in one place.</p><a style="color:#e39a0a">See Information →</a></div>
+</div></div>
+<div class="stats"><div class="statsBar"><div class="stat"><div class="statIcon">🎓</div><div><b>5000+</b><small>Study Resources</small></div></div><div class="stat"><div class="statIcon">▣</div><div><b>2000+</b><small>Nursing Books</small></div></div><div class="stat"><div class="statIcon">▤</div><div><b>1500+</b><small>Past Papers</small></div></div><div class="stat"><div class="statIcon">♟</div><div><b>10K+</b><small>Happy Students</small></div></div></div></div></div>
 </section>
 
-<section id="study" class="screen">
-  <div class="pageHead">
-    <h1>🧠 Study Resources</h1>
-    <p>All important nursing study materials in one place.</p>
-  </div>
-  <div class="studyIntro card">
-    <div class="studyIcon">🎓</div>
-    <div>
-      <h2>Smart Study Hub</h2>
-      <p class="muted">Use the Admin Panel to add or edit books and past papers. They automatically appear here as study resources.</p>
-    </div>
-  </div>
-  <div class="sectionTitle"><h2>📚 Books & Learning Materials</h2><p>Admin-added resources</p></div>
-  <div id="studyBooksList" class="items"></div>
-  <div class="sectionTitle" style="margin-top:42px"><h2>📝 Past Papers</h2><p>Practice and prepare</p></div>
-  <div id="studyPapersList" class="items"></div>
-</section>
-
-<section id="books" class="screen"><div class="pageHead"><h1>📚 Nursing Books</h1><p>Admin-added books and resources appear here automatically.</p></div><div class="toolbar"><input id="bookSearch" class="search" placeholder="Search books..." oninput="renderBooks()"></div><div id="booksList" class="items"></div></section>
-
-<section id="papers" class="screen"><div class="pageHead"><h1>📝 Past Papers</h1><p>Past papers added from the Admin Panel.</p></div><div class="toolbar"><input id="paperSearch" class="search" placeholder="Search subject, year or semester..." oninput="renderPapers()"></div><div id="papersList" class="items"></div></section>
-
-<section id="notice" class="screen"><div class="pageHead"><h1>📢 Important Information</h1><p>Admission notices, merit lists and important updates.</p></div><div id="noticeList"></div><h2 style="color:var(--teal2);margin-top:30px">🏆 Merit Lists</h2><div id="meritList" class="items"></div></section>
-
-<section id="contact" class="screen">
-<div class="pageHead"><h1>☎️ Contact Us</h1><p>Have information or a suggestion for the hub?</p></div>
-<div class="form"><h2 style="color:var(--teal2)">Nursing Information Hub</h2><p class="muted">For website administration and content management, use the Admin Panel. This website does not collect student personal information.</p><p><b>Email:</b> aq0071727@gmail.com</p></div>
-</section>
-
-<section id="admin" class="screen">
-<div class="pageHead"><div class="adminTop"><div><h1>⚙️ Admin Panel</h1><p>Manage books, past papers, notices and merit lists from anywhere.</p></div><button class="secondary" onclick="logout()">Log out</button></div></div>
-<div class="card" style="margin-bottom:16px"><b>✨ Online content management</b><p class="muted">Changes saved here are stored in Supabase and can appear for all website visitors. PDFs can be uploaded to the website storage or you can paste an external resource link.</p></div>
-<div class="adminTabs">
-<button class="active" onclick="adminTab('books')">📚 Books</button><button onclick="adminTab('papers')">📝 Past Papers</button><button onclick="adminTab('notices')">📢 Notices</button><button onclick="adminTab('merit')">🏆 Merit Lists</button>
-</div>
-<div id="adminArea"></div>
-</section>
+<section id="study" class="screen"><div class="container"><div class="pageHead"><h1>🎓 Study Resources</h1><p>All important nursing study materials in one place.</p></div><div class="studyIntro"><h2 style="margin:0;color:#062d58">Smart Study Hub</h2><p class="muted">Use the Admin Panel to add or edit books and past papers. They automatically appear here as study resources.</p></div><div class="sectionTitle"><h2>📚 Books & Learning Materials</h2><p>Admin-added resources</p></div><div id="studyBooksList" class="items"></div><div class="sectionTitle"><h2>📝 Past Papers</h2><p>Practice and prepare</p></div><div id="studyPapersList" class="items"></div></div></section>
+<section id="books" class="screen"><div class="pageHead"><div class="container" style="padding:0"><h1>📚 Nursing Books</h1><p>Admin-added books and resources appear here automatically.</p></div></div><div class="toolbar"><input id="bookSearch" class="search" placeholder="Search books..." oninput="renderBooks()"></div><div id="booksList" class="items"></div></section>
+<section id="papers" class="screen"><div class="pageHead"><div class="container" style="padding:0"><h1>📝 Past Papers</h1><p>Past papers added from the Admin Panel.</p></div></div><div class="toolbar"><input id="paperSearch" class="search" placeholder="Search subject, year or semester..." oninput="renderPapers()"></div><div id="papersList" class="items"></div></section>
+<section id="notice" class="screen"><div class="pageHead"><div class="container" style="padding:0"><h1>📢 Important Information</h1><p>Admission notices, merit lists and important updates.</p></div></div><div id="noticeList"></div><div class="container"><h2 style="color:#062d58;margin-top:30px">🏆 Merit Lists</h2></div><div id="meritList" class="items"></div></section>
+<section id="contact" class="screen"><div class="pageHead"><div class="container" style="padding:0"><h1>☎ Contact Us</h1><p>Have information or a suggestion for the hub?</p></div></div><div class="form"><h2 style="color:#062d58">Nursing Information Hub</h2><p class="muted">For website administration and content management, use the Admin Panel. This website does not collect student personal information.</p><p><b>Email:</b> aq0071727@gmail.com</p></div></section>
+<section id="admin" class="screen"><div class="pageHead"><div class="container" style="padding:0"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><div><h1>⚙️ Admin Panel</h1><p>Manage books, past papers, notices and merit lists.</p></div><button class="secondary" style="background:#fff;color:#062d58;border-color:#cfe2ee" onclick="logout()">Log out</button></div></div></div><div class="adminTabs"><button class="active" onclick="adminTab('books')">📚 Books</button><button onclick="adminTab('papers')">📝 Past Papers</button><button onclick="adminTab('notices')">📢 Notices</button><button onclick="adminTab('merit')">🏆 Merit Lists</button></div><div id="adminArea" class="adminArea"></div></section>
 </main>
-<footer><b>Nursing Information Hub</b><br>Learn together • Grow together • Serve better</footer>
-
-<div id="loginModal" class="modal"><div class="modalBox"><button class="close" onclick="closeLogin()">×</button><h2 style="color:var(--teal2)">🔐 Admin Login</h2><p class="muted">Only the website administrator can manage content.</p><div id="loginError" class="error"></div><div class="field"><label>Email</label><input id="loginEmail" type="email" value="aq0071727@gmail.com"></div><div class="field"><label>Password</label><input id="loginPassword" type="password" placeholder="Your Supabase password"></div><button class="primary" style="width:100%" onclick="login()">Login</button></div></div>
-
+<footer><div class="footerGrid"><div><div class="footerBrand">♡ Nursing Information <span>Hub</span></div><p>Learn • Prepare • Succeed</p></div><div class="footerCol"><h4>Quick Links</h4><a onclick="go('home')">Home</a><a onclick="go('study')">Study Resources</a><a onclick="go('books')">Books</a><a onclick="go('papers')">Past Papers</a></div><div class="footerCol"><h4>Popular Subjects</h4><p>Anatomy & Physiology</p><p>Pharmacology</p><p>Pathophysiology</p><p>Medical Surgical Nursing</p><p>Community Health Nursing</p></div><div class="footerCol"><h4>Contact Us</h4><p>☎ +92 300 1234567</p><p>✉ info@nursinghub.com</p><p>◉ Pakistan</p></div></div><div class="copyright"><span>© 2026 Nursing Information Hub. All Rights Reserved.</span><span>Made with ♥ for Nursing Students</span></div></footer>
+<div id="loginModal" class="modal"><div class="modalBox"><button class="close" onclick="closeLogin()">×</button><h2 style="color:#062d58">🔐 Admin Login</h2><p class="muted">Only the website administrator can manage content.</p><div id="loginError" class="error"></div><div class="field"><label>Email</label><input id="loginEmail" type="email" value="aq0071727@gmail.com"></div><div class="field"><label>Password</label><input id="loginPassword" type="password" placeholder="Your Supabase password"></div><button class="primary" style="width:100%" onclick="login()">Login</button></div></div>
 <script>
 const SUPABASE_URL="https://lfttzysdapvnivmyfavu.supabase.co";
 const SUPABASE_KEY="sb_publishable_nNpff1XPczi0pEsjlG9tcw_el61Yewa";
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-let session=null, adminSection="books";
-
-function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));(document.getElementById(id)||document.getElementById("home")).classList.add("active");scrollTo(0,0)}
-function go(id){show(id);history.pushState({screen:id},"","#"+id);if(["study","books","papers","notice","admin"].includes(id))loadData()}
-addEventListener("popstate",e=>show((e.state&&e.state.screen)||location.hash.slice(1)||"home"));
-function toggleMenu(){document.getElementById("mobileMenu").classList.toggle("open");document.getElementById("drawerShade").classList.toggle("open")}
-async function openAdmin(){toggleMenuClose();const {data}=await sb.auth.getSession();session=data.session;if(session){show("admin");history.pushState({screen:"admin"},"","#admin");loadData()}else document.getElementById("loginModal").classList.add("open")}
-function toggleMenuClose(){document.getElementById("mobileMenu").classList.remove("open");document.getElementById("drawerShade").classList.remove("open")}
-function closeLogin(){document.getElementById("loginModal").classList.remove("open")}
-async function login(){const e=document.getElementById("loginEmail").value.trim(),p=document.getElementById("loginPassword").value;const err=document.getElementById("loginError");err.style.display="none";const {data,error}=await sb.auth.signInWithPassword({email:e,password:p});if(error){err.textContent=error.message;err.style.display="block";return}session=data.session;closeLogin();show("admin");history.pushState({screen:"admin"},"","#admin");loadData()}
-async function logout(){await sb.auth.signOut();session=null;go("home")}
-async function loadData(){
-  renderBooks();renderPapers();renderNotices();renderStudyResources();
-  if(session)renderAdmin()
-}
-async function getRows(table){const {data,error}=await sb.from(table).select("*").order("created_at",{ascending:false});if(error){console.error(error);return []}return data||[]}
-async function renderStudyResources(){
-  const books=await getRows("books"), papers=await getRows("past_papers");
-  const b=document.getElementById("studyBooksList"), p=document.getElementById("studyPapersList");
-  if(!b||!p)return;
-  b.innerHTML=books.length?books.map(x=>`<article class="item"><div class="cover">${x.cover_url?`<img src="${esc(x.cover_url)}" style="width:100%;height:100%;object-fit:cover">`:"📚"}</div><div class="itembody"><h3>${esc(x.title)}</h3><p>${esc(x.author||"Nursing resource")}</p><p>${esc(x.description||"")}</p>${x.resource_url?`<a class="link" target="_blank" rel="noopener" href="${esc(x.resource_url)}">Open Study Material →</a>`:""}</div></article>`).join(""):`<div class="card"><h3>No study materials yet</h3><p class="muted">Admin can add books/resources from the Admin Panel.</p></div>`;
-  p.innerHTML=papers.length?papers.map(x=>`<article class="item"><div class="cover">📝</div><div class="itembody"><h3>${esc(x.title)}</h3><p>${esc(x.subject||"")} ${x.year?"• "+esc(x.year):""} ${x.semester?"• "+esc(x.semester):""}</p>${x.resource_url?`<a class="link" target="_blank" rel="noopener" href="${esc(x.resource_url)}">Open Past Paper →</a>`:""}</div></article>`).join(""):`<div class="card"><h3>No past papers yet</h3><p class="muted">Admin can add past papers from the Admin Panel.</p></div>`;
-}
-
-async function renderBooks(){const rows=await getRows("books"),q=(document.getElementById("bookSearch")?.value||"").toLowerCase();const a=rows.filter(x=>(x.title+" "+(x.author||"")+" "+(x.description||"")).toLowerCase().includes(q));document.getElementById("booksList").innerHTML=a.length?a.map(x=>`<article class="item"><div class="cover">${x.cover_url?`<img src="${esc(x.cover_url)}" style="width:100%;height:100%;object-fit:cover">`:"📚"}</div><div class="itembody"><h3>${esc(x.title)}</h3><p>${esc(x.author||"Nursing resource")}</p><p>${esc(x.description||"")}</p>${x.resource_url?`<a class="link" target="_blank" rel="noopener" href="${esc(x.resource_url)}">Open Resource →</a>`:""}</div></article>`).join(""):`<div class="card"><h3>No books yet</h3><p class="muted">Books added from the Admin Panel will appear here.</p></div>`}
-async function renderPapers(){const rows=await getRows("past_papers"),q=(document.getElementById("paperSearch")?.value||"").toLowerCase();const a=rows.filter(x=>(x.title+" "+(x.subject||"")+" "+(x.year||"")+" "+(x.semester||"")).toLowerCase().includes(q));document.getElementById("papersList").innerHTML=a.length?a.map(x=>`<article class="item"><div class="cover">📝</div><div class="itembody"><h3>${esc(x.title)}</h3><p>${esc(x.subject||"")} ${x.year?"• "+esc(x.year):""} ${x.semester?"• "+esc(x.semester):""}</p>${x.resource_url?`<a class="link" target="_blank" rel="noopener" href="${esc(x.resource_url)}">Open Paper →</a>`:""}</div></article>`).join(""):`<div class="card"><h3>No past papers yet</h3><p class="muted">Add papers from Admin Panel.</p></div>`}
-async function renderNotices(){const rows=await getRows("notices"),ml=await getRows("merit_lists");document.getElementById("noticeList").innerHTML=rows.length?rows.map(x=>`<div class="notice"><h3 style="margin:0;color:var(--teal2)">${esc(x.title)}</h3><small>${esc(x.notice_date||"")}</small><p>${esc(x.content)}</p></div>`).join(""):`<div class="card"><p class="muted">No notices yet.</p></div>`;document.getElementById("meritList").innerHTML=ml.length?ml.map(x=>`<article class="item"><div class="cover">🏆</div><div class="itembody"><h3>${esc(x.title)}</h3><p>${esc(x.session||"")} ${x.list_number?"• List "+esc(x.list_number):""}</p>${x.resource_url?`<a class="link" target="_blank" rel="noopener" href="${esc(x.resource_url)}">Open Merit List →</a>`:""}</div></article>`).join(""):`<div class="card"><p class="muted">No merit lists yet.</p></div>`}
-function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function adminTab(s){adminSection=s;document.querySelectorAll(".adminTabs button").forEach(b=>b.classList.remove("active"));event.target.classList.add("active");renderAdmin()}
-async function renderAdmin(){if(!session){return}const map={books:["Books","books"],papers:["Past Papers","past_papers"],notices:["Notices","notices"],merit:["Merit Lists","merit_lists"]},[label,table]=map[adminSection],rows=await getRows(table);let form="";if(adminSection==="books")form=`<h3>Add Book</h3><div class="field"><label>Book name</label><input id="f1"></div><div class="field"><label>Author</label><input id="f2"></div><div class="field"><label>Description</label><textarea id="f3"></textarea></div><div class="field"><label>Cover image URL (optional)</label><input id="f4" placeholder="https://..."></div><div class="field"><label>PDF / resource URL</label><input id="f5" placeholder="https://..."></div>`;
-if(adminSection==="papers")form=`<h3>Add Past Paper</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Subject</label><input id="f2"></div><div class="field"><label>Year</label><input id="f3"></div><div class="field"><label>Semester</label><input id="f4"></div><div class="field"><label>PDF / resource URL</label><input id="f5" placeholder="https://..."></div>`;
-if(adminSection==="notices")form=`<h3>Add Notice</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Date</label><input id="f2" placeholder="November 2026"></div><div class="field"><label>Notice</label><textarea id="f3"></textarea></div>`;
-if(adminSection==="merit")form=`<h3>Add Merit List</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Session</label><input id="f2"></div><div class="field"><label>List number</label><input id="f3"></div><div class="field"><label>PDF / resource URL</label><input id="f4" placeholder="https://..."></div>`;
-document.getElementById("adminArea").innerHTML=`<div class="form" style="max-width:none;margin-bottom:18px">${form}<button class="primary" onclick="addItem('${table}')">＋ Add ${label}</button></div><div class="adminList">${rows.length?rows.map(x=>`<div class="adminRow"><div><b>${esc(x.title)}</b><div class="muted">${esc(x.subject||x.author||x.notice_date||x.session||"")}</div></div><div style="display:flex;gap:7px;flex-wrap:wrap"><button class="smallBtn" onclick="editItem('${table}',${x.id})">Edit</button><button class="danger" onclick="deleteItem('${table}',${x.id})">Delete</button></div></div>`).join(""):`<div class="card"><p class="muted">No ${label.toLowerCase()} added yet.</p></div>`}</div>`}
-async function addItem(table){let obj={};if(table==="books")obj={title:v("f1"),author:v("f2"),description:v("f3"),cover_url:v("f4"),resource_url:v("f5")};if(table==="past_papers")obj={title:v("f1"),subject:v("f2"),year:v("f3"),semester:v("f4"),resource_url:v("f5")};if(table==="notices")obj={title:v("f1"),notice_date:v("f2"),content:v("f3")};if(table==="merit_lists")obj={title:v("f1"),session:v("f2"),list_number:v("f3"),resource_url:v("f4")};const {error}=await sb.from(table).insert(obj);if(error){alert(error.message);return}alert("Saved successfully!");loadData()}
-async function editItem(table,id){
- const {data,error}=await sb.from(table).select("*").eq("id",id).single();
- if(error){alert(error.message);return}
- let obj={};
- if(table==="books"){obj.title=prompt("Book name:",data.title);if(obj.title===null)return;obj.author=prompt("Author:",data.author||"")||"";obj.description=prompt("Description:",data.description||"")||"";obj.cover_url=prompt("Cover image URL:",data.cover_url||"")||"";obj.resource_url=prompt("PDF / resource URL:",data.resource_url||"")||""}
- if(table==="past_papers"){obj.title=prompt("Title:",data.title);if(obj.title===null)return;obj.subject=prompt("Subject:",data.subject||"")||"";obj.year=prompt("Year:",data.year||"")||"";obj.semester=prompt("Semester:",data.semester||"")||"";obj.resource_url=prompt("PDF / resource URL:",data.resource_url||"")||""}
- if(table==="notices"){obj.title=prompt("Title:",data.title);if(obj.title===null)return;obj.notice_date=prompt("Date:",data.notice_date||"")||"";obj.content=prompt("Notice:",data.content||"")||""}
- if(table==="merit_lists"){obj.title=prompt("Title:",data.title);if(obj.title===null)return;obj.session=prompt("Session:",data.session||"")||"";obj.list_number=prompt("List number:",data.list_number||"")||"";obj.resource_url=prompt("PDF / resource URL:",data.resource_url||"")||""}
- const {error:e}=await sb.from(table).update(obj).eq("id",id);
- if(e){alert(e.message);return} alert("Updated successfully!"); loadData()
-}
-async function deleteItem(table,id){if(!confirm("Delete this item?"))return;const {error}=await sb.from(table).delete().eq("id",id);if(error){alert(error.message);return}loadData()}
-function v(id){return document.getElementById(id)?.value.trim()||""}
-async function startApp(){const initial=location.hash.slice(1);if(initial==="admin"){await openAdmin();}else{const safeInitial=document.getElementById(initial)?initial:"home";show(safeInitial);history.replaceState({screen:safeInitial},"",safeInitial==="home"?location.pathname:location.pathname+"#"+safeInitial);loadData();}}
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);let session=null,adminSection="books";
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));(document.getElementById(id)||document.getElementById('home')).classList.add('active');document.querySelectorAll('.navlinks button[data-screen]').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));scrollTo(0,0)}
+function go(id){show(id);history.pushState({screen:id},'',id==='home'?location.pathname:'#'+id);if(['study','books','papers','notice','admin'].includes(id))loadData()}
+addEventListener('popstate',e=>show((e.state&&e.state.screen)||location.hash.slice(1)||'home'));
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');document.getElementById('drawerShade').classList.toggle('open')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('drawerShade').classList.remove('open')}
+async function openAdmin(){closeMenu();const {data}=await sb.auth.getSession();session=data.session;if(session){show('admin');history.pushState({screen:'admin'},'','#admin');loadData()}else document.getElementById('loginModal').classList.add('open')}
+function closeLogin(){document.getElementById('loginModal').classList.remove('open')}
+async function login(){const e=document.getElementById('loginEmail').value.trim(),p=document.getElementById('loginPassword').value,err=document.getElementById('loginError');err.style.display='none';const {data,error}=await sb.auth.signInWithPassword({email:e,password:p});if(error){err.textContent=error.message;err.style.display='block';return}session=data.session;closeLogin();show('admin');history.pushState({screen:'admin'},'','#admin');loadData()}
+async function logout(){await sb.auth.signOut();session=null;go('home')}
+async function loadData(){renderBooks();renderPapers();renderNotices();renderStudyResources();if(session)renderAdmin()}
+async function getRows(table){const {data,error}=await sb.from(table).select('*').order('created_at',{ascending:false});if(error){console.error(error);return []}return data||[]}
+function cardBook(x){return `<article class="item"><div class="cover">${x.cover_url?`<img src="${esc(x.cover_url)}" alt="Book cover">`:'📚'}</div><div class="itembody"><h3>${esc(x.title)}</h3><p>${esc(x.author||'Nursing resource')}</p><p>${esc(x.description||'')}</p>${x.resource_url?`<a class="link" target="_blank" rel="noopener" href="${esc(x.resource_url)}">Open Resource →</a>`:''}</div></article>`}
+function cardPaper(x){return `<article class="item"><div class="cover">📝</div><div class="itembody"><h3>${esc(x.title)}</h3><p>${esc(x.subject||'')} ${x.year?'• '+esc(x.year):''} ${x.semester?'• '+esc(x.semester):''}</p>${x.resource_url?`<a class="link" target="_blank" rel="noopener" href="${esc(x.resource_url)}">Open Paper →</a>`:''}</div></article>`}
+async function renderStudyResources(){const books=await getRows('books'),papers=await getRows('past_papers');const b=document.getElementById('studyBooksList'),p=document.getElementById('studyPapersList');if(!b||!p)return;b.innerHTML=books.length?books.map(cardBook).join(''):`<div class="card" style="padding:20px"><h3>No study materials yet</h3><p class="muted">Admin can add books/resources from the Admin Panel.</p></div>`;p.innerHTML=papers.length?papers.map(cardPaper).join(''):`<div class="card" style="padding:20px"><h3>No past papers yet</h3><p class="muted">Admin can add past papers from the Admin Panel.</p></div>`}
+async function renderBooks(){const el=document.getElementById('booksList');if(!el)return;const rows=await getRows('books'),q=(document.getElementById('bookSearch')?.value||'').toLowerCase();const a=rows.filter(x=>(x.title+' '+(x.author||'')+' '+(x.description||'')).toLowerCase().includes(q));el.innerHTML=a.length?a.map(cardBook).join(''):`<div class="card" style="padding:20px"><h3>No books yet</h3><p class="muted">Books added from the Admin Panel will appear here.</p></div>`}
+async function renderPapers(){const el=document.getElementById('papersList');if(!el)return;const rows=await getRows('past_papers'),q=(document.getElementById('paperSearch')?.value||'').toLowerCase();const a=rows.filter(x=>(x.title+' '+(x.subject||'')+' '+(x.year||'')+' '+(x.semester||'')).toLowerCase().includes(q));el.innerHTML=a.length?a.map(cardPaper).join(''):`<div class="card" style="padding:20px"><h3>No past papers yet</h3><p class="muted">Add papers from Admin Panel.</p></div>`}
+async function renderNotices(){const rows=await getRows('notices'),ml=await getRows('merit_lists'),n=document.getElementById('noticeList'),m=document.getElementById('meritList');if(!n||!m)return;n.innerHTML=rows.length?rows.map(x=>`<div class="notice"><h3>${esc(x.title)}</h3><small>${esc(x.notice_date||'')}</small><p>${esc(x.content)}</p></div>`).join(''):`<div class="card" style="padding:18px;margin:0 18px"><p class="muted">No notices yet.</p></div>`;m.innerHTML=ml.length?ml.map(x=>`<article class="item"><div class="cover">🏆</div><div class="itembody"><h3>${esc(x.title)}</h3><p>${esc(x.session||'')} ${x.list_number?'• List '+esc(x.list_number):''}</p>${x.resource_url?`<a class="link" target="_blank" rel="noopener" href="${esc(x.resource_url)}">Open Merit List →</a>`:''}</div></article>`).join(''):`<div class="card" style="padding:18px"><p class="muted">No merit lists yet.</p></div>`}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function adminTab(s){adminSection=s;document.querySelectorAll('.adminTabs button').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');renderAdmin()}
+async function renderAdmin(){if(!session)return;const map={books:['Books','books'],papers:['Past Papers','past_papers'],notices:['Notices','notices'],merit:['Merit Lists','merit_lists']},[label,table]=map[adminSection],rows=await getRows(table);let form='';if(adminSection==='books')form=`<h3>Add Book</h3><div class="field"><label>Book name</label><input id="f1"></div><div class="field"><label>Author</label><input id="f2"></div><div class="field"><label>Description</label><textarea id="f3"></textarea></div><div class="field"><label>Cover image URL</label><input id="f4"></div><div class="field"><label>PDF / resource URL</label><input id="f5"></div>`;if(adminSection==='papers')form=`<h3>Add Past Paper</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Subject</label><input id="f2"></div><div class="field"><label>Year</label><input id="f3"></div><div class="field"><label>Semester</label><input id="f4"></div><div class="field"><label>PDF / resource URL</label><input id="f5"></div>`;if(adminSection==='notices')form=`<h3>Add Notice</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Date</label><input id="f2"></div><div class="field"><label>Notice</label><textarea id="f3"></textarea></div>`;if(adminSection==='merit')form=`<h3>Add Merit List</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Session</label><input id="f2"></div><div class="field"><label>List number</label><input id="f3"></div><div class="field"><label>PDF / resource URL</label><input id="f4"></div>`;document.getElementById('adminArea').innerHTML=`<div class="form" style="max-width:none">${form}<button class="primary" onclick="addItem('${table}')">＋ Add ${label}</button></div><div style="margin-top:18px">${rows.length?rows.map(x=>`<div class="adminRow"><div><b>${esc(x.title)}</b><div class="muted">${esc(x.subject||x.author||x.notice_date||x.session||'')}</div></div><div style="display:flex;gap:7px"><button class="smallBtn" onclick="editItem('${table}',${x.id})">Edit</button><button class="danger" onclick="deleteItem('${table}',${x.id})">Delete</button></div></div>`).join(''):`<div class="card" style="padding:18px"><p class="muted">No ${label.toLowerCase()} added yet.</p></div>`}</div>`}
+async function addItem(table){let obj={};if(table==='books')obj={title:v('f1'),author:v('f2'),description:v('f3'),cover_url:v('f4'),resource_url:v('f5')};if(table==='past_papers')obj={title:v('f1'),subject:v('f2'),year:v('f3'),semester:v('f4'),resource_url:v('f5')};if(table==='notices')obj={title:v('f1'),notice_date:v('f2'),content:v('f3')};if(table==='merit_lists')obj={title:v('f1'),session:v('f2'),list_number:v('f3'),resource_url:v('f4')};const {error}=await sb.from(table).insert(obj);if(error){alert(error.message);return}alert('Saved successfully!');loadData()}
+async function editItem(table,id){const {data,error}=await sb.from(table).select('*').eq('id',id).single();if(error){alert(error.message);return}let obj={};if(table==='books'){obj.title=prompt('Book name:',data.title);if(obj.title===null)return;obj.author=prompt('Author:',data.author||'')||'';obj.description=prompt('Description:',data.description||'')||'';obj.cover_url=prompt('Cover image URL:',data.cover_url||'')||'';obj.resource_url=prompt('PDF / resource URL:',data.resource_url||'')||''}if(table==='past_papers'){obj.title=prompt('Title:',data.title);if(obj.title===null)return;obj.subject=prompt('Subject:',data.subject||'')||'';obj.year=prompt('Year:',data.year||'')||'';obj.semester=prompt('Semester:',data.semester||'')||'';obj.resource_url=prompt('PDF / resource URL:',data.resource_url||'')||''}if(table==='notices'){obj.title=prompt('Title:',data.title);if(obj.title===null)return;obj.notice_date=prompt('Date:',data.notice_date||'')||'';obj.content=prompt('Notice:',data.content||'')||''}if(table==='merit_lists'){obj.title=prompt('Title:',data.title);if(obj.title===null)return;obj.session=prompt('Session:',data.session||'')||'';obj.list_number=prompt('List number:',data.list_number||'')||'';obj.resource_url=prompt('PDF / resource URL:',data.resource_url||'')||''}const {error:e}=await sb.from(table).update(obj).eq('id',id);if(e){alert(e.message);return}alert('Updated successfully!');loadData()}
+async function deleteItem(table,id){if(!confirm('Delete this item?'))return;const {error}=await sb.from(table).delete().eq('id',id);if(error){alert(error.message);return}loadData()}
+function v(id){return document.getElementById(id)?.value.trim()||''}
+async function startApp(){const initial=location.hash.slice(1);const safe=document.getElementById(initial)?initial:'home';show(safe);history.replaceState({screen:safe},'',safe==='home'?location.pathname:location.pathname+'#'+safe);loadData();}
 startApp();
 </script>
 </body>
