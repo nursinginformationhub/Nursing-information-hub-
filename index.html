@@ -29,6 +29,41 @@ footer{background:linear-gradient(135deg,#031a37,#06416a);color:#c9dceb;margin-t
 @media(max-width:620px){.topbar{display:none}.nav{min-height:68px;padding:9px 13px}.brand b{font-size:15px}.brand small{font-size:9px}.logo{width:42px;height:42px}.hero{min-height:720px}.hero-inner{min-height:720px;padding:38px 14px 20px}.hero h1{font-size:44px;letter-spacing:-1.5px}.hero p{font-size:14px}.visual{min-height:390px}.hero-circle{width:340px;height:340px}.hero-ring{width:420px;height:190px}.imageTrack{width:320px;height:340px}.heroImage{width:245px;height:315px;right:37px}.floatCard{width:150px;padding:9px;font-size:10px}.floatCard .ficon{width:34px;height:34px;font-size:17px}.fc1{left:-5px;top:30px}.fc2{right:-4px;top:125px}.fc3{left:2px;bottom:5px}.sectionTitle{padding-top:30px}.sectionTitle h2{font-size:28px}.featureGrid,.items{grid-template-columns:1fr}.statsBar{grid-template-columns:1fr 1fr;border-radius:20px;padding:12px}.stat{padding:10px 5px;border-right:0}.stat b{font-size:16px}.footerGrid{grid-template-columns:1fr}.copyright{flex-direction:column;gap:8px}.pageHead h1{font-size:28px}.adminRow{align-items:flex-start;flex-direction:column}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
+
+<style id="admin-crud-fix">
+.admin-crud-wrap{max-width:1100px;margin:20px auto;padding:18px}
+.admin-crud-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.admin-crud-tabs button{border:0;border-radius:12px;padding:11px 16px;font-weight:800;cursor:pointer}
+.admin-crud-tabs button.active{background:#00bcd4;color:#06202b}
+.admin-crud-tabs button:not(.active){background:#102b3d;color:#fff}
+.crud-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:15px 0}
+.crud-add{background:#00bcd4;color:#06202b;border:0;border-radius:12px;padding:12px 18px;font-weight:900;cursor:pointer}
+.crud-list{display:grid;gap:12px}
+.crud-card{background:#fff;border:1px solid #dce8ef;border-radius:16px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,.07)}
+.crud-card h4{margin:0 0 7px;color:#08364d}
+.crud-meta{color:#557080;font-size:13px;margin-bottom:12px}
+.crud-actions{display:flex;gap:8px;flex-wrap:wrap}
+.crud-actions button{border:0;border-radius:10px;padding:9px 13px;font-weight:800;cursor:pointer}
+.crud-edit{background:#e3f6ff;color:#05617b}
+.crud-delete{background:#ffe7e7;color:#a51d1d}
+.crud-empty{padding:28px;text-align:center;color:#607d8b;background:#f7fbfd;border-radius:14px}
+.crud-modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:99999}
+.crud-modal.open{display:flex}
+.crud-box{background:#fff;border-radius:20px;width:min(650px,100%);max-height:92vh;overflow:auto;padding:22px}
+.crud-box h3{margin-top:0;color:#073a52}
+.crud-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.crud-field{display:flex;flex-direction:column;gap:6px}
+.crud-field.full{grid-column:1/-1}
+.crud-field label{font-weight:800;font-size:13px;color:#355463}
+.crud-field input,.crud-field textarea,.crud-field select{width:100%;box-sizing:border-box;border:1px solid #cbdde5;border-radius:10px;padding:11px;font:inherit}
+.crud-field textarea{min-height:100px;resize:vertical}
+.crud-modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}
+.crud-modal-actions button{border:0;border-radius:10px;padding:11px 16px;font-weight:800;cursor:pointer}
+.crud-cancel{background:#edf3f6;color:#355463}
+.crud-save{background:#00bcd4;color:#06202b}
+@media(max-width:600px){.crud-grid{grid-template-columns:1fr}.crud-field.full{grid-column:auto}}
+</style>
+
 </head>
 <body>
 <div class="topbar"><div class="topbar-inner"><div class="top-left"><span>✉ aq0071727@gmail.com</span><span>|</span><span>☎ 03099717978</span></div><div class="socials"><span>f</span><span>◎</span><span>▶</span><span>◉</span></div></div></div>
@@ -105,5 +140,225 @@ function v(id){return document.getElementById(id)?.value.trim()||''}
 async function startApp(){const initial=location.hash.slice(1);const safe=document.getElementById(initial)?initial:'home';show(safe);history.replaceState({screen:safe},'',safe==='home'?location.pathname:location.pathname+'#'+safe);loadData();}
 startApp();
 </script>
+
+<script id="admin-crud-module">
+(function(){
+  const CONFIG = {
+    books: {
+      title: "Nursing Books",
+      table: "books",
+      fields: [
+        ["title","Book Title","text",true],
+        ["author","Author","text",true],
+        ["subject","Subject","text",false],
+        ["semester","Semester","text",false],
+        ["description","Description","textarea",false],
+        ["pdf_url","PDF / Book Link","url",false]
+      ]
+    },
+    past_papers: {
+      title: "Past Papers",
+      table: "past_papers",
+      fields: [
+        ["title","Paper Title","text",true],
+        ["subject","Subject","text",true],
+        ["semester","Semester","text",false],
+        ["year","Year","text",false],
+        ["description","Description","textarea",false],
+        ["pdf_url","PDF / Paper Link","url",false]
+      ]
+    },
+    notices: {
+      title: "Notices",
+      table: "notices",
+      fields: [
+        ["title","Notice Title","text",true],
+        ["description","Notice Details","textarea",true],
+        ["date","Date","date",false],
+        ["link","Notice Link","url",false]
+      ]
+    },
+    merit_lists: {
+      title: "Merit Lists",
+      table: "merit_lists",
+      fields: [
+        ["title","Merit List Title","text",true],
+        ["program","Program / Department","text",false],
+        ["year","Year","text",false],
+        ["description","Description","textarea",false],
+        ["pdf_url","PDF / Merit List Link","url",false]
+      ]
+    }
+  };
+
+  let state = {type:"books", rows:[], editing:null};
+
+  function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));}
+  function getStore(k){try{return JSON.parse(localStorage.getItem("nih_"+k)||"[]")}catch(e){return[]}}
+  function setStore(k,v){localStorage.setItem("nih_"+k,JSON.stringify(v))}
+
+  async function dbList(cfg){
+    if(window.supabase && typeof window.supabase.from==="function"){
+      const r=await window.supabase.from(cfg.table).select("*").order("created_at",{ascending:false});
+      if(!r.error) return r.data||[];
+    }
+    return getStore(cfg.table);
+  }
+  async function dbSave(cfg,payload,id){
+    if(window.supabase && typeof window.supabase.from==="function"){
+      let r;
+      if(id) r=await window.supabase.from(cfg.table).update(payload).eq("id",id).select();
+      else r=await window.supabase.from(cfg.table).insert(payload).select();
+      if(!r.error) return r.data?.[0]||payload;
+      throw new Error(r.error.message||"Database save failed");
+    }
+    const rows=getStore(cfg.table);
+    if(id){
+      const i=rows.findIndex(x=>String(x.id)===String(id));
+      if(i>=0) rows[i]={...rows[i],...payload};
+      else rows.push({id,...payload});
+    } else rows.unshift({id:Date.now().toString(),...payload});
+    setStore(cfg.table,rows); return rows[0];
+  }
+  async function dbDelete(cfg,id){
+    if(window.supabase && typeof window.supabase.from==="function"){
+      const r=await window.supabase.from(cfg.table).delete().eq("id",id);
+      if(r.error) throw new Error(r.error.message||"Delete failed");
+      return;
+    }
+    setStore(cfg.table,getStore(cfg.table).filter(x=>String(x.id)!==String(id)));
+  }
+
+  function ensurePanel(){
+    if(document.getElementById("crudAdminPanel")) return;
+    const host=document.createElement("section");
+    host.id="crudAdminPanel";
+    host.style.cssText="display:none;background:#f3f9fc;padding:22px 0";
+    host.innerHTML=`
+      <div class="admin-crud-wrap">
+        <div class="crud-toolbar">
+          <div><h2 style="margin:0;color:#073a52">Admin Management</h2><small id="crudStatus">Manage your resources</small></div>
+          <button class="crud-add" id="crudAdd">＋ Add New</button>
+        </div>
+        <div class="admin-crud-tabs" id="crudTabs"></div>
+        <div class="crud-list" id="crudList"></div>
+      </div>
+      <div class="crud-modal" id="crudModal">
+        <div class="crud-box">
+          <h3 id="crudFormTitle">Add New</h3>
+          <form id="crudForm"><div class="crud-grid" id="crudFields"></div>
+          <div class="crud-modal-actions">
+            <button type="button" class="crud-cancel" id="crudCancel">Cancel</button>
+            <button type="submit" class="crud-save">Save</button>
+          </div></form>
+        </div>
+      </div>`;
+    document.body.appendChild(host);
+
+    const tabs=document.getElementById("crudTabs");
+    Object.entries(CONFIG).forEach(([key,cfg])=>{
+      const b=document.createElement("button");
+      b.textContent=cfg.title;
+      b.dataset.type=key;
+      b.onclick=()=>switchType(key);
+      tabs.appendChild(b);
+    });
+    document.getElementById("crudAdd").onclick=()=>openForm();
+    document.getElementById("crudCancel").onclick=closeForm;
+    document.getElementById("crudForm").onsubmit=saveForm;
+  }
+
+  async function switchType(type){
+    state.type=type; state.editing=null;
+    ensurePanel();
+    document.querySelectorAll("#crudTabs button").forEach(b=>b.classList.toggle("active",b.dataset.type===type));
+    const cfg=CONFIG[type];
+    document.getElementById("crudStatus").textContent="Loading "+cfg.title+"...";
+    try{state.rows=await dbList(cfg); renderList();}
+    catch(e){document.getElementById("crudList").innerHTML='<div class="crud-empty">Could not load data: '+esc(e.message)+'</div>'}
+  }
+
+  function renderList(){
+    const cfg=CONFIG[state.type], list=document.getElementById("crudList");
+    document.getElementById("crudStatus").textContent=cfg.title+" • "+state.rows.length+" item(s)";
+    if(!state.rows.length){list.innerHTML='<div class="crud-empty">No items yet. Click <b>＋ Add New</b> to add the first one.</div>';return}
+    list.innerHTML=state.rows.map(row=>{
+      const title=row.title||row.name||row.book_title||"Untitled";
+      const sub=[row.author,row.subject,row.semester,row.program,row.year,row.date].filter(Boolean).join(" • ");
+      return `<article class="crud-card">
+        <h4>${esc(title)}</h4><div class="crud-meta">${esc(sub||"No extra details")}</div>
+        <div class="crud-actions">
+          <button class="crud-edit" onclick="window.NIHAdmin.edit('${esc(row.id)}')">✏️ Edit</button>
+          <button class="crud-delete" onclick="window.NIHAdmin.del('${esc(row.id)}')">🗑️ Delete</button>
+        </div>
+      </article>`;
+    }).join("");
+  }
+
+  function openForm(row){
+    const cfg=CONFIG[state.type]; state.editing=row||null;
+    document.getElementById("crudFormTitle").textContent=(row?"Edit ":"Add New ")+cfg.title.replace(/s$/,"");
+    document.getElementById("crudFields").innerHTML=cfg.fields.map(([key,label,type,req])=>{
+      const val=row?.[key]??"";
+      if(type==="textarea") return `<div class="crud-field full"><label>${esc(label)}${req?" *":""}</label><textarea name="${key}" ${req?"required":""}>${esc(val)}</textarea></div>`;
+      return `<div class="crud-field"><label>${esc(label)}${req?" *":""}</label><input name="${key}" type="${type}" value="${esc(val)}" ${req?"required":""}></div>`;
+    }).join("");
+    document.getElementById("crudModal").classList.add("open");
+  }
+  function closeForm(){document.getElementById("crudModal")?.classList.remove("open");state.editing=null}
+  async function saveForm(e){
+    e.preventDefault();
+    const cfg=CONFIG[state.type], fd=new FormData(e.target), payload={};
+    cfg.fields.forEach(([key])=>payload[key]=String(fd.get(key)||"").trim());
+    try{
+      await dbSave(cfg,payload,state.editing?.id);
+      closeForm(); await switchType(state.type);
+      alert(state.editing?"Updated successfully!":"Added successfully!");
+    }catch(err){alert("Save failed: "+err.message)}
+  }
+  async function edit(id){
+    const row=state.rows.find(x=>String(x.id)===String(id));
+    if(row) openForm(row);
+  }
+  async function del(id){
+    const row=state.rows.find(x=>String(x.id)===String(id));
+    if(!row) return;
+    if(!confirm("Delete this item? This cannot be undone.")) return;
+    try{await dbDelete(CONFIG[state.type],id);await switchType(state.type);alert("Deleted successfully!")}
+    catch(err){alert("Delete failed: "+err.message)}
+  }
+
+  window.NIHAdmin={open:async function(){
+    ensurePanel();
+    const p=document.getElementById("crudAdminPanel");
+    p.style.display="block";
+    p.scrollIntoView({behavior:"smooth",block:"start"});
+    await switchType(state.type);
+  },edit,del,close:closeForm};
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    ensurePanel();
+    // Support #admin even though the public Manage Portal button is hidden.
+    if(location.hash.toLowerCase()==="#admin"){
+      setTimeout(()=>window.NIHAdmin.open(),400);
+    }
+  });
+})();
+</script>
+
+
+<script id="admin-hash-launcher">
+(function(){
+  function update(){
+    const isAdmin=location.hash.toLowerCase()==="#admin";
+    const p=document.getElementById("crudAdminPanel");
+    if(p) p.style.display=isAdmin?"block":"none";
+    if(isAdmin && window.NIHAdmin) window.NIHAdmin.open();
+  }
+  window.addEventListener("hashchange",update);
+  document.addEventListener("DOMContentLoaded",()=>setTimeout(update,500));
+})();
+</script>
+
 </body>
 </html>
