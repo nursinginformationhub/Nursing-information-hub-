@@ -124,7 +124,7 @@ async function login(){const e=document.getElementById('loginEmail').value.trim(
 async function logout(){await sb.auth.signOut();session=null;go('home')}
 async function loadData(){renderBooks();renderPapers();renderNotices();renderStudyResources();if(session)renderAdmin()}
 async function getRows(table){const {data,error}=await sb.from(table).select('*').order('created_at',{ascending:false});if(error){console.error(error);return []}return data||[]}
-function cardBook(x){const link=x.resource_url||x.pdf_url||'';return `<article class="item"><div class="cover">${x.cover_url?`<img src="${esc(x.cover_url)}" alt="Book cover">`:'📚'}</div><div class="itembody"><h3>${esc(x.title||'Untitled Book')}</h3><p>${esc(x.author||'Nursing resource')}</p><p>${esc(x.description||'')}</p>${link?`<a class="link" target="_blank" rel="noopener" href="${esc(link)}">Open Book →</a>`:''}</div></article>`}
+function cardBook(x){const link=x.resource_url||x.pdf_url||'';const meta=[x.author,x.subject,x.semester].filter(Boolean).join(' • ');return `<article class="item"><div class="cover">${x.cover_url?`<img src="${esc(x.cover_url)}" alt="Book cover">`:'📚'}</div><div class="itembody"><h3>${esc(x.title||'Untitled Book')}</h3><p>${esc(meta||'Nursing resource')}</p><p>${esc(x.description||'')}</p>${link?`<a class="link" target="_blank" rel="noopener" href="${esc(link)}">Open Resource →</a>`:''}</div></article>`}
 function cardPaper(x){return `<article class="item"><div class="cover">📝</div><div class="itembody"><h3>${esc(x.title)}</h3><p>${esc(x.subject||'')} ${x.year?'• '+esc(x.year):''} ${x.semester?'• '+esc(x.semester):''}</p>${x.resource_url?`<a class="link" target="_blank" rel="noopener" href="${esc(x.resource_url)}">Open Paper →</a>`:''}</div></article>`}
 async function renderStudyResources(){const books=await getRows('books'),papers=await getRows('past_papers');const b=document.getElementById('studyBooksList'),p=document.getElementById('studyPapersList');if(!b||!p)return;b.innerHTML=books.length?books.map(cardBook).join(''):`<div class="card" style="padding:20px"><h3>No study materials yet</h3><p class="muted">Admin can add books/resources from the Admin Panel.</p></div>`;p.innerHTML=papers.length?papers.map(cardPaper).join(''):`<div class="card" style="padding:20px"><h3>No past papers yet</h3><p class="muted">Admin can add past papers from the Admin Panel.</p></div>`}
 async function renderBooks(){const el=document.getElementById('booksList');if(!el)return;const rows=await getRows('books'),q=(document.getElementById('bookSearch')?.value||'').toLowerCase();const a=rows.filter(x=>(x.title+' '+(x.author||'')+' '+(x.description||'')).toLowerCase().includes(q));el.innerHTML=a.length?a.map(cardBook).join(''):`<div class="card" style="padding:20px"><h3>No books yet</h3><p class="muted">Books added from the Admin Panel will appear here.</p></div>`}
@@ -140,11 +140,6 @@ function v(id){return document.getElementById(id)?.value.trim()||''}
 async function startApp(){const initial=location.hash.slice(1);const safe=document.getElementById(initial)?initial:'home';show(safe);history.replaceState({screen:safe},'',safe==='home'?location.pathname:location.pathname+'#'+safe);loadData();}
 startApp();
 </script>
-
-
-
-
-
 
 </body>
 </html>
