@@ -169,30 +169,25 @@ section h2,section h3{color:var(--nih)}footer{background:linear-gradient(135deg,
   .nih-feature-box,.nih-service-box{flex-direction:column;align-items:flex-start}
   .nih-quick-inner{grid-template-columns:1fr 1fr}
 }
-</style><style>
-.nih-brand-hero{
-  max-width:1100px;margin:18px auto 0;padding:0 16px
-}
-.nih-brand-hero .brand-card{
-  display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:18px;
-  background:linear-gradient(135deg,#0b4a5d,#106078 65%,#7d6aa8);
-  color:#fff;box-shadow:0 14px 35px rgba(16,96,120,.16)
-}
-.nih-brand-mark{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;
-  background:rgba(255,255,255,.12);font-size:26px;border:1px solid rgba(255,255,255,.2)}
-.nih-brand-card-title{font-size:20px;font-weight:900}
-.nih-brand-card-sub{font-size:12px;color:rgba(255,255,255,.82);margin-top:3px}
-.nih-admin-note{padding:13px 15px;border-radius:13px;background:#eef9ff;border:1px solid #cfe8f3;color:#365f70;margin-bottom:16px}
-.nih-admin-note b{color:#106078}
-.nih-sql{width:100%;min-height:180px;padding:12px;border-radius:12px;border:1px solid #d6e6ef;background:#f7fbfd;font-family:monospace;font-size:12px}
-.nih-analytics-box{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0 18px}
-.nih-analytics-card{padding:18px;border-radius:16px;background:#fff;border:1px solid rgba(16,96,120,.1);box-shadow:0 8px 22px rgba(16,96,120,.06)}
-.nih-analytics-card b{display:block;font-size:24px;color:#106078}.nih-analytics-card span{font-size:12px;color:#718a92}
-@media(max-width:700px){.nih-analytics-box{grid-template-columns:1fr}}
-</style></head>
+</style>
+<style>
+/* ===== Safe V3 additions: do not alter existing navigation/home structure ===== */
+.nih-v3-updates{max-width:1100px;margin:28px auto;padding:0 16px}
+.nih-v3-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.nih-v3-card{background:#fff;border:1px solid rgba(16,96,120,.10);border-radius:18px;padding:18px;box-shadow:0 10px 28px rgba(16,96,120,.07)}
+.nih-v3-card h3{margin:7px 0;color:#106078}.nih-v3-card p{margin:0;color:#63808a;line-height:1.5}
+.nih-new{display:inline-block;margin-left:6px;padding:3px 8px;border-radius:999px;background:#b67283;color:#fff;font-size:10px;font-weight:900;animation:nihPulse 1.35s infinite}
+@keyframes nihPulse{0%,100%{box-shadow:0 0 0 0 rgba(182,114,131,.4)}50%{box-shadow:0 0 0 7px rgba(182,114,131,0)}}
+.nih-v3-quiz{max-width:900px;margin:22px auto;padding:0 16px}.nih-v3-option{display:block;width:100%;text-align:left;margin:9px 0;padding:14px;border:1px solid #d6e6ef;border-radius:12px;background:#fff;cursor:pointer}.nih-v3-option:hover{background:#eef9fc}.nih-v3-option.correct{background:#e8f8ee;border-color:#62b47a}.nih-v3-option.wrong{background:#fff0f2;border-color:#d66b7a}
+.nih-v3-analytics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0 18px}.nih-v3-stat{padding:18px;border-radius:16px;background:#fff;border:1px solid rgba(16,96,120,.1);box-shadow:0 8px 22px rgba(16,96,120,.06)}.nih-v3-stat b{display:block;font-size:24px;color:#106078}.nih-v3-stat span{font-size:12px;color:#718a92}
+.nih-v3-sql{width:100%;min-height:210px;padding:12px;border-radius:12px;border:1px solid #d6e6ef;background:#f7fbfd;font-family:monospace;font-size:12px}
+@media(max-width:800px){.nih-v3-grid,.nih-v3-analytics{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.nih-v3-grid,.nih-v3-analytics{grid-template-columns:1fr}}
+</style>
+</head>
 <body>
 <div class="topbar"><div class="topbar-inner"><div class="top-left"><span>✉ aq0071727@gmail.com</span><span>|</span><span>☎ 03099717978</span></div><div class="socials"><span>f</span><span>◎</span><span>▶</span><span>◉</span></div></div></div>
-<header><div class="nav"><div class="brand" onclick="go('home')"><div class="logo">♡</div><div><b>Nursing Information Hub</b><small>Learn • Prepare • Succeed</small></div></div><div class="navlinks"><button data-screen="home" onclick="go('home')">Home</button><button data-screen="study" onclick="go('study')">Study Resources⌄</button><button data-screen="books" onclick="go('books')">Books</button><button data-screen="papers" onclick="go('papers')">Past Papers</button><button data-screen="notice" onclick="go('notice')">Information⌄</button><button data-screen="contact" onclick="go('contact')">Contact</button></div><button class="menu" onclick="toggleMenu()">☰</button></div></header>
+<header><div class="nav"><div class="brand" onclick="go('home')"><div class="logo">♡</div><div><b>Nursing Information Hub</b><small>Learn • Prepare • Succeed</small></div></div><div class="navlinks"><button data-screen="home" onclick="go('home')">Home</button><button data-screen="study" onclick="go('study')">Study Resources⌄</button><button data-screen="books" onclick="go('books')">Books</button><button data-screen="papers" onclick="go('papers')">Past Papers</button><button data-screen="notice" onclick="go('notice')">Information⌄</button><button data-screen="contact" onclick="go('contact')">Contact</button><button data-screen="mcqs" onclick="go('mcqs')">🧠 MCQs</button></div><button class="menu" onclick="toggleMenu()">☰</button></div></header>
 <div class="ticker"><div class="ticker-track"><span>🎓 Nursing students' learning space</span><span>📚 Study Resources</span><span>📝 Past Papers</span><span>🩺 Nursing Books</span><span>📢 Important Information</span><span>🎓 Nursing students' learning space</span><span>📚 Study Resources</span><span>📝 Past Papers</span><span>🩺 Nursing Books</span></div></div>
 <div id="mobileMenu" class="mobileMenu"><button onclick="go('home');toggleMenu()">🏠 Home</button><button onclick="go('study');toggleMenu()">🎓 Study Resources</button><button onclick="go('books');toggleMenu()">📚 Nursing Books</button><button onclick="go('papers');toggleMenu()">📝 Past Papers</button><button onclick="go('notice');toggleMenu()">📢 Important Information</button><button onclick="go('contact');toggleMenu()">☎ Contact Us</button></div><div id="drawerShade" class="drawerShade" onclick="toggleMenu()"></div>
 
@@ -246,16 +241,6 @@ section h2,section h3{color:var(--nih)}footer{background:linear-gradient(135deg,
 
 
 <section id="home" class="screen active">
-<div class="nih-brand-hero">
-  <div class="brand-card">
-    <div class="nih-brand-mark">🩺</div>
-    <div>
-      <div class="nih-brand-card-title">Nursing Information Hub</div>
-      <div class="nih-brand-card-sub">Your complete digital learning hub for nursing students</div>
-    </div>
-  </div>
-</div>
-
 <div class="hero"><div class="hero-inner"><div>
 <div class="eyebrow">🎓 Nursing students' learning space</div>
 <h1>Welcome to <span class="accent">Nursing Information</span> Hub</h1>
@@ -287,24 +272,10 @@ section h2,section h3{color:var(--nih)}footer{background:linear-gradient(135deg,
 <section id="books" class="screen"><div class="pageHead"><div class="container" style="padding:0"><h1>📚 Nursing Books</h1><p>Admin-added books and resources appear here automatically.</p></div></div><div class="toolbar"><input id="bookSearch" class="search" placeholder="Search books..." oninput="renderBooks()"></div><div id="booksList" class="items"></div></section>
 <section id="papers" class="screen"><div class="pageHead"><div class="container" style="padding:0"><h1>📝 Past Papers</h1><p>Past papers added from the Admin Panel.</p></div></div><div class="toolbar"><input id="paperSearch" class="search" placeholder="Search subject, year or semester..." oninput="renderPapers()"></div><div id="papersList" class="items"></div></section>
 <section id="notice" class="screen"><div class="pageHead"><div class="container" style="padding:0"><h1>📢 Important Information</h1><p>Admission notices, merit lists and important updates.</p></div></div><div id="noticeList"></div><div class="container"><h2 style="color:#062d58;margin-top:30px">🏆 Merit Lists</h2></div><div id="meritList" class="items"></div></section>
-<section id="contact" class="screen"><div class="pageHead"><div class="container" style="padding:0"><h1>☎ Contact Us</h1><p>Have information, a suggestion, or feedback for the hub?</p></div></div><div class="form" style="max-width:900px"><h2 style="color:#062d58">Nursing Information Hub</h2><p class="muted">We would love to hear from nursing students. You can contact us or leave a comment below.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0"><div class="card" style="padding:16px"><b>📞 Contact Number</b><p style="margin:8px 0 0">03099717978</p></div><div class="card" style="padding:16px"><b>📧 Email</b><p style="margin:8px 0 0">aq0071727@gmail.com</p></div></div><hr style="border:0;border-top:1px solid #dbe8f0;margin:22px 0"><h2 style="color:#062d58">💬 Leave a Comment</h2><p class="muted">Share your feedback, suggestion, or message.</p><div class="field"><label>Your Name</label><input id="commentName" placeholder="Enter your name"></div><div class="field"><label>Comment</label><textarea id="commentText" rows="4" placeholder="Write your comment..."></textarea></div><button class="primary" onclick="submitComment()">💬 Post Comment</button><div id="commentMsg" class="muted" style="margin-top:10px"></div><div id="commentsList" style="margin-top:20px"></div></div></section>
 
-<section id="mcqs" class="screen">
-  <div class="pageHead"><div class="container" style="padding:0">
-    <h1>🧠 Nursing MCQ Tests</h1><p>Practice, submit and review your nursing knowledge.</p>
-  </div></div>
-  <div class="container">
-    <div class="card" style="padding:22px;margin-bottom:18px">
-      <h2 style="color:#062d58;margin-top:0">Start a Test</h2>
-      <div class="field"><label>Subject</label><select id="mcqSubject"><option value="">All Subjects</option></select></div>
-      <div class="field"><label>Number of Questions</label><select id="mcqCount"><option>10</option><option>20</option><option>30</option><option>50</option></select></div>
-      <button class="primary" onclick="startNIHQuiz()">🧠 Start Test</button>
-      <div id="mcqSetupMsg" class="muted" style="margin-top:10px"></div>
-    </div>
-    <div id="mcqQuizArea"></div>
-  </div>
-</section>
-<section id="admin" class="screen"><div class="pageHead"><div class="container" style="padding:0"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><div><h1>⚙️ Admin Panel</h1><p>Manage books, past papers, notices and merit lists.</p></div><button class="secondary" style="background:#fff;color:#062d58;border-color:#cfe2ee" onclick="logout()">Log out</button></div></div></div><div class="adminTabs"><button class="active" onclick="adminTab('books')">📚 Books</button><button onclick="adminTab('papers')">📝 Past Papers</button><button onclick="adminTab('notices')">📢 Notices</button><button onclick="adminTab('merit')">🏆 Merit Lists</button><button onclick="adminTab('mcqs')">🧠 MCQs</button><button onclick="adminTab('analytics')">📊 Analytics</button></div><div id="adminArea" class="adminArea"></div></section>
+<section id="mcqs" class="screen"><div class="pageHead"><div class="container" style="padding:0"><h1>🧠 Nursing MCQ Tests</h1><p>Practice nursing questions and check your score.</p></div></div><div class="nih-v3-quiz"><div class="card" style="padding:22px"><h2 style="color:#062d58;margin-top:0">Start a Test</h2><div class="field"><label>Subject</label><select id="nihMcqSubject"><option value="">All Subjects</option></select></div><div class="field"><label>Number of Questions</label><select id="nihMcqCount"><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option></select></div><button class="primary" onclick="nihStartQuiz()">🧠 Start Test</button><p id="nihMcqMessage" class="muted" style="margin-top:10px"></p></div><div id="nihQuizArea" style="margin-top:18px"></div></div></section>
+<section id="contact" class="screen"><div class="pageHead"><div class="container" style="padding:0"><h1>☎ Contact Us</h1><p>Have information, a suggestion, or feedback for the hub?</p></div></div><div class="form" style="max-width:900px"><h2 style="color:#062d58">Nursing Information Hub</h2><p class="muted">We would love to hear from nursing students. You can contact us or leave a comment below.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0"><div class="card" style="padding:16px"><b>📞 Contact Number</b><p style="margin:8px 0 0">03099717978</p></div><div class="card" style="padding:16px"><b>📧 Email</b><p style="margin:8px 0 0">aq0071727@gmail.com</p></div></div><hr style="border:0;border-top:1px solid #dbe8f0;margin:22px 0"><h2 style="color:#062d58">💬 Leave a Comment</h2><p class="muted">Share your feedback, suggestion, or message.</p><div class="field"><label>Your Name</label><input id="commentName" placeholder="Enter your name"></div><div class="field"><label>Comment</label><textarea id="commentText" rows="4" placeholder="Write your comment..."></textarea></div><button class="primary" onclick="submitComment()">💬 Post Comment</button><div id="commentMsg" class="muted" style="margin-top:10px"></div><div id="commentsList" style="margin-top:20px"></div></div></section>
+<section id="admin" class="screen"><div class="pageHead"><div class="container" style="padding:0"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><div><h1>⚙️ Admin Panel</h1><p>Manage books, past papers, notices and merit lists.</p></div><button class="secondary" style="background:#fff;color:#062d58;border-color:#cfe2ee" onclick="logout()">Log out</button></div></div></div><div class="adminTabs"><button class="active" onclick="adminTab('books')">📚 Books</button><button onclick="adminTab('papers')">📝 Past Papers</button><button onclick="adminTab('notices')">📢 Notices</button><button onclick="adminTab('merit')">🏆 Merit Lists</button><button onclick="nihMcqAdmin()">🧠 MCQs</button><button onclick="nihAnalyticsAdmin()">📊 Analytics</button></div><div id="adminArea" class="adminArea"></div></section>
 </main>
 <footer><div class="footerGrid"><div><div class="footerBrand">♡ Nursing Information <span>Hub</span></div><p>Learn • Prepare • Succeed</p></div><div class="footerCol"><h4>Quick Links</h4><a onclick="go('home')">Home</a><a onclick="go('study')">Study Resources</a><a onclick="go('books')">Books</a><a onclick="go('papers')">Past Papers</a></div><div class="footerCol"><h4>Popular Subjects</h4><p>Anatomy & Physiology</p><p>Pharmacology</p><p>Pathophysiology</p><p>Medical Surgical Nursing</p><p>Community Health Nursing</p></div><div class="footerCol"><h4>Contact Us</h4><p>☎ 03099717978</p><p>✉ aq0071727@gmail.com</p><p>◉ Pakistan</p></div></div><div class="copyright"><span>© 2026 Nursing Information Hub. All Rights Reserved.</span><span>Made with ♥ for Nursing Students</span></div></footer>
 <div id="loginModal" class="modal"><div class="modalBox"><button class="close" onclick="closeLogin()">×</button><h2 style="color:#062d58">🔐 Admin Login</h2><p class="muted">Only the website administrator can manage content.</p><div id="loginError" class="error"></div><div class="field"><label>Email</label><input id="loginEmail" type="email" placeholder="Admin email"></div><div class="field"><label>Password</label><input id="loginPassword" type="password" placeholder="Your Supabase password"></div><button class="primary" style="width:100%" onclick="login()">Login</button></div></div>
@@ -313,7 +284,7 @@ const SUPABASE_URL="https://lfttzysdapvnivmyfavu.supabase.co";
 const SUPABASE_KEY="sb_publishable_nNpff1XPczi0pEsjlG9tcw_el61Yewa";
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);let session=null,adminSection="books";
 function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));(document.getElementById(id)||document.getElementById('home')).classList.add('active');document.querySelectorAll('.navlinks button[data-screen]').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));scrollTo(0,0);if(id==='contact')setTimeout(loadComments,50)}
-function go(id){if(id==='admin'){openAdmin();return}show(id);history.pushState({screen:id},'',id==='home'?location.pathname:'#'+id);if(['study','books','papers','notice'].includes(id))loadData();if(id==='mcqs')setTimeout(loadMCQSetup,100)}
+function go(id){if(id==='admin'){openAdmin();return}show(id);history.pushState({screen:id},'',id==='home'?location.pathname:'#'+id);if(['study','books','papers','notice'].includes(id))loadData()}
 addEventListener('popstate',e=>show((e.state&&e.state.screen)||location.hash.slice(1)||'home'));
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');document.getElementById('drawerShade').classList.toggle('open')}
 function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('drawerShade').classList.remove('open')}
@@ -331,134 +302,11 @@ async function renderPapers(){const el=document.getElementById('papersList');if(
 async function renderNotices(){const rows=await getRows('notices'),ml=await getRows('merit_lists'),n=document.getElementById('noticeList'),m=document.getElementById('meritList');if(!n||!m)return;n.innerHTML=rows.length?rows.map(x=>`<div class="notice"><h3>${esc(x.title)}</h3><small>${esc(x.notice_date||'')}</small><p>${esc(x.content)}</p></div>`).join(''):`<div class="card" style="padding:18px;margin:0 18px"><p class="muted">No notices yet.</p></div>`;m.innerHTML=ml.length?ml.map(x=>`<article class="item"><div class="cover">🏆</div><div class="itembody"><h3>${esc(x.title)}</h3><p>${esc(x.session||'')} ${x.list_number?'• List '+esc(x.list_number):''}</p>${x.resource_url?`<a class="link" target="_blank" rel="noopener" href="${esc(x.resource_url)}">Open Merit List →</a>`:''}</div></article>`).join(''):`<div class="card" style="padding:18px"><p class="muted">No merit lists yet.</p></div>`}
 function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 function adminTab(s){adminSection=s;document.querySelectorAll('.adminTabs button').forEach(b=>b.classList.remove('active'));const btn=[...document.querySelectorAll('.adminTabs button')].find(b=>(b.getAttribute('onclick')||'').includes("adminTab('"+s+"')"));if(btn)btn.classList.add('active');renderAdmin()}
-async function submitComment(){const name=document.getElementById('commentName').value.trim();const comment=document.getElementById('commentText').value.trim();const msg=document.getElementById('commentMsg');if(!name||!comment){msg.textContent='Please enter your name and comment.';return}msg.textContent='Posting...';const {error}=await sb.from('comments').insert([{name,comment}]);if(error){msg.textContent='Comments are not enabled yet. Please create the comments table in Supabase first.';return}document.getElementById('commentName').value='';document.getElementById('commentText').value='';msg.textContent='Comment posted successfully!';loadComments()}async function loadComments(){const box=document.getElementById('commentsList');if(!box)return;const {data,error}=await sb.from('comments').select('*').order('created_at',{ascending:false}).limit(30);if(error){box.innerHTML='<div class="card" style="padding:14px"><p class="muted">Comments will appear here after the comments table is enabled.</p></div>';return}box.innerHTML=data.length?data.map(x=>`<div class="card" style="padding:15px;margin-bottom:10px"><b>💬 ${esc(x.name)}</b><p style="margin:7px 0">${esc(x.comment)}</p><small class="muted">${x.created_at?new Date(x.created_at).toLocaleString():''}</small></div>`).join(''):'<p class="muted">No comments yet. Be the first to comment!</p>'}async function renderAdmin(){
-if(!session)return;
-const map={books:['Books','books'],papers:['Past Papers','past_papers'],notices:['Notices','notices'],merit:['Merit Lists','merit_lists'],mcqs:['MCQs','mcqs'],analytics:['Analytics','__analytics__']};
-const [label,table]=map[adminSection]||map.books;
-if(adminSection==='analytics'){
-document.getElementById('adminArea').innerHTML=`<div class="form" style="max-width:none">
-<h3>📊 Website Analytics</h3>
-<div class="nih-admin-note"><b>Proper analytics:</b> Google Analytics 4 is the recommended setup. It needs your GA4 Measurement ID (format <b>G-XXXXXXXXXX</b>). The dashboard can then show visitors, page views, traffic sources, devices and Google-search performance.</div>
-<div class="nih-analytics-box">
-<div class="nih-analytics-card"><b>GA4</b><span>Visitor analytics</span></div>
-<div class="nih-analytics-card"><b>Search Console</b><span>Google search performance</span></div>
-<div class="nih-analytics-card"><b>Supabase</b><span>Content/database activity</span></div>
-</div>
-<div class="field"><label>GA4 Measurement ID</label><input id="gaMeasurementId" placeholder="G-XXXXXXXXXX" value="${esc(localStorage.getItem('nih_ga_id')||'')}"></div>
-<button class="primary" onclick="saveNIHGA()">💾 Save Analytics ID</button>
-<p id="gaMsg" class="muted" style="margin-top:10px"></p>
-<p class="muted">After saving, the site will load GA4 on future visits. Google Search Console is a separate verification step.</p>
-</div>`;
-return;
-}
-if(adminSection==='mcqs'){
-const {data,error}=await sb.from('mcqs').select('*').order('created_at',{ascending:false});
-if(error){
-document.getElementById('adminArea').innerHTML=`<div class="form" style="max-width:none">
-<h3>🧠 MCQ Management</h3>
-<div class="nih-admin-note"><b>One-time setup required:</b> Create the <b>mcqs</b> table in Supabase using the SQL below. After that this Admin Panel section will add, edit and delete MCQs.</div>
-<textarea class="nih-sql" readonly>create table public.mcqs (
-  id bigint generated by default as identity primary key,
-  question text not null,
-  option_a text not null,
-  option_b text not null,
-  option_c text not null,
-  option_d text not null,
-  correct_answer text not null,
-  subject text,
-  difficulty text,
-  explanation text,
-  created_at timestamptz default now()
-);</textarea>
-<button class="smallBtn" style="margin-top:10px" onclick="navigator.clipboard?.writeText(this.previousElementSibling.value);alert('SQL copied. Paste it into Supabase SQL Editor.')">📋 Copy SQL</button>
-<p class="muted" style="margin-top:10px">Supabase message: ${esc(error.message)}</p>
-</div>`;
-return;
-}
-const rows=data||[];
-document.getElementById('adminArea').innerHTML=`<div class="form" style="max-width:none">
-<h3>Add MCQ</h3>
-<div class="field"><label>Question</label><textarea id="f1"></textarea></div>
-<div class="field"><label>Option A</label><input id="f2"></div>
-<div class="field"><label>Option B</label><input id="f3"></div>
-<div class="field"><label>Option C</label><input id="f4"></div>
-<div class="field"><label>Option D</label><input id="f5"></div>
-<div class="field"><label>Correct Answer</label><select id="f6"><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option></select></div>
-<div class="field"><label>Subject</label><input id="f7" placeholder="e.g. Pharmacology"></div>
-<div class="field"><label>Difficulty</label><select id="f8"><option>Easy</option><option>Medium</option><option>Hard</option></select></div>
-<div class="field"><label>Explanation</label><textarea id="f9"></textarea></div>
-<button class="primary" onclick="addItem('mcqs')">＋ Add MCQ</button>
-</div>
-<div style="margin-top:18px">${rows.length?rows.map(x=>`<div class="adminRow"><div><b>${esc(x.question)}</b><div class="muted">${esc(x.subject||'')} ${x.difficulty?'• '+esc(x.difficulty):''}</div></div><div style="display:flex;gap:7px"><button class="smallBtn" onclick="editItem('mcqs',${x.id})">Edit</button><button class="danger" onclick="deleteItem('mcqs',${x.id})">Delete</button></div></div>`).join(''):`<div class="card" style="padding:18px"><p class="muted">No MCQs added yet.</p></div>`}</div>`;
-return;
-}
-const rows=await getRows(table);
-let form='';
-if(adminSection==='books')form=`<h3>Add Book</h3><div class="field"><label>Book name</label><input id="f1"></div><div class="field"><label>Author</label><input id="f2"></div><div class="field"><label>Description</label><textarea id="f3"></textarea></div><div class="field"><label>Cover image URL</label><input id="f4"></div><div class="field"><label>PDF / resource URL</label><input id="f5"></div>`;
-if(adminSection==='papers')form=`<h3>Add Past Paper</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Subject</label><input id="f2"></div><div class="field"><label>Year</label><input id="f3"></div><div class="field"><label>Semester</label><input id="f4"></div><div class="field"><label>PDF / resource URL</label><input id="f5"></div>`;
-if(adminSection==='notices')form=`<h3>Add Notice</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Date</label><input id="f2"></div><div class="field"><label>Notice</label><textarea id="f3"></textarea></div>`;
-if(adminSection==='merit')form=`<h3>Add Merit List</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Session</label><input id="f2"></div><div class="field"><label>List number</label><input id="f3"></div><div class="field"><label>PDF / resource URL</label><input id="f4"></div>`;
-document.getElementById('adminArea').innerHTML=`<div class="form" style="max-width:none">${form}<button class="primary" onclick="addItem('${table}')">＋ Add ${label}</button></div><div style="margin-top:18px">${rows.length?rows.map(x=>`<div class="adminRow"><div><b>${esc(x.title)}</b><div class="muted">${esc(x.subject||x.author||x.notice_date||x.session||'')}</div></div><div style="display:flex;gap:7px"><button class="smallBtn" onclick="editItem('${table}',${x.id})">Edit</button><button class="danger" onclick="deleteItem('${table}',${x.id})">Delete</button></div></div>`).join(''):`<div class="card" style="padding:18px"><p class="muted">No ${label.toLowerCase()} added yet.</p></div>`}</div>`;
-}
-async function addItem(table){
-let obj={};
-if(table==='books')obj={title:v('f1'),author:v('f2'),description:v('f3'),cover_url:v('f4'),resource_url:v('f5')};
-if(table==='past_papers')obj={title:v('f1'),subject:v('f2'),year:v('f3'),semester:v('f4'),resource_url:v('f5')};
-if(table==='notices')obj={title:v('f1'),notice_date:v('f2'),content:v('f3')};
-if(table==='merit_lists')obj={title:v('f1'),session:v('f2'),list_number:v('f3'),resource_url:v('f4')};
-if(table==='mcqs')obj={question:v('f1'),option_a:v('f2'),option_b:v('f3'),option_c:v('f4'),option_d:v('f5'),correct_answer:v('f6'),subject:v('f7'),difficulty:v('f8'),explanation:v('f9')};
-const {error}=await sb.from(table).insert(obj);
-if(error){alert(error.message);return}
-alert('Saved successfully!');loadData();
-}
-async function editItem(table,id){const {data,error}=await sb.from(table).select('*').eq('id',id).single();if(error){alert(error.message);return}let obj={};if(table==='books'){obj.title=prompt('Book name:',data.title);if(obj.title===null)return;obj.author=prompt('Author:',data.author||'')||'';obj.description=prompt('Description:',data.description||'')||'';obj.cover_url=prompt('Cover image URL:',data.cover_url||'')||'';obj.resource_url=prompt('PDF / resource URL:',data.resource_url||'')||''}if(table==='past_papers'){obj.title=prompt('Title:',data.title);if(obj.title===null)return;obj.subject=prompt('Subject:',data.subject||'')||'';obj.year=prompt('Year:',data.year||'')||'';obj.semester=prompt('Semester:',data.semester||'')||'';obj.resource_url=prompt('PDF / resource URL:',data.resource_url||'')||''}if(table==='notices'){obj.title=prompt('Title:',data.title);if(obj.title===null)return;obj.notice_date=prompt('Date:',data.notice_date||'')||'';obj.content=prompt('Notice:',data.content||'')||''}if(table==='merit_lists'){obj.title=prompt('Title:',data.title);if(obj.title===null)return;obj.session=prompt('Session:',data.session||'')||'';obj.list_number=prompt('List number:',data.list_number||'')||'';obj.resource_url=prompt('PDF / resource URL:',data.resource_url||'')||''}if(table==='mcqs'){
-obj.question=prompt('Question:',data.question);if(obj.question===null)return;
-obj.option_a=prompt('Option A:',data.option_a||'')||'';obj.option_b=prompt('Option B:',data.option_b||'')||'';
-obj.option_c=prompt('Option C:',data.option_c||'')||'';obj.option_d=prompt('Option D:',data.option_d||'')||'';
-obj.correct_answer=prompt('Correct Answer (A/B/C/D):',data.correct_answer||'A')||'A';
-obj.subject=prompt('Subject:',data.subject||'')||'';obj.difficulty=prompt('Difficulty:',data.difficulty||'Medium')||'Medium';
-obj.explanation=prompt('Explanation:',data.explanation||'')||'';
-}
-const {error:e}=await sb.from(table).update(obj).eq('id',id);if(e){alert(e.message);return}alert('Updated successfully!');loadData()}
+async function submitComment(){const name=document.getElementById('commentName').value.trim();const comment=document.getElementById('commentText').value.trim();const msg=document.getElementById('commentMsg');if(!name||!comment){msg.textContent='Please enter your name and comment.';return}msg.textContent='Posting...';const {error}=await sb.from('comments').insert([{name,comment}]);if(error){msg.textContent='Comments are not enabled yet. Please create the comments table in Supabase first.';return}document.getElementById('commentName').value='';document.getElementById('commentText').value='';msg.textContent='Comment posted successfully!';loadComments()}async function loadComments(){const box=document.getElementById('commentsList');if(!box)return;const {data,error}=await sb.from('comments').select('*').order('created_at',{ascending:false}).limit(30);if(error){box.innerHTML='<div class="card" style="padding:14px"><p class="muted">Comments will appear here after the comments table is enabled.</p></div>';return}box.innerHTML=data.length?data.map(x=>`<div class="card" style="padding:15px;margin-bottom:10px"><b>💬 ${esc(x.name)}</b><p style="margin:7px 0">${esc(x.comment)}</p><small class="muted">${x.created_at?new Date(x.created_at).toLocaleString():''}</small></div>`).join(''):'<p class="muted">No comments yet. Be the first to comment!</p>'}async function renderAdmin(){if(!session)return;const map={books:['Books','books'],papers:['Past Papers','past_papers'],notices:['Notices','notices'],merit:['Merit Lists','merit_lists']},[label,table]=map[adminSection],rows=await getRows(table);let form='';if(adminSection==='books')form=`<h3>Add Book</h3><div class="field"><label>Book name</label><input id="f1"></div><div class="field"><label>Author</label><input id="f2"></div><div class="field"><label>Description</label><textarea id="f3"></textarea></div><div class="field"><label>Cover image URL</label><input id="f4"></div><div class="field"><label>PDF / resource URL</label><input id="f5"></div>`;if(adminSection==='papers')form=`<h3>Add Past Paper</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Subject</label><input id="f2"></div><div class="field"><label>Year</label><input id="f3"></div><div class="field"><label>Semester</label><input id="f4"></div><div class="field"><label>PDF / resource URL</label><input id="f5"></div>`;if(adminSection==='notices')form=`<h3>Add Notice</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Date</label><input id="f2"></div><div class="field"><label>Notice</label><textarea id="f3"></textarea></div>`;if(adminSection==='merit')form=`<h3>Add Merit List</h3><div class="field"><label>Title</label><input id="f1"></div><div class="field"><label>Session</label><input id="f2"></div><div class="field"><label>List number</label><input id="f3"></div><div class="field"><label>PDF / resource URL</label><input id="f4"></div>`;document.getElementById('adminArea').innerHTML=`<div class="form" style="max-width:none">${form}<button class="primary" onclick="addItem('${table}')">＋ Add ${label}</button></div><div style="margin-top:18px">${rows.length?rows.map(x=>`<div class="adminRow"><div><b>${esc(x.title)}</b><div class="muted">${esc(x.subject||x.author||x.notice_date||x.session||'')}</div></div><div style="display:flex;gap:7px"><button class="smallBtn" onclick="editItem('${table}',${x.id})">Edit</button><button class="danger" onclick="deleteItem('${table}',${x.id})">Delete</button></div></div>`).join(''):`<div class="card" style="padding:18px"><p class="muted">No ${label.toLowerCase()} added yet.</p></div>`}</div>`}
+async function addItem(table){let obj={};if(table==='books')obj={title:v('f1'),author:v('f2'),description:v('f3'),cover_url:v('f4'),resource_url:v('f5')};if(table==='past_papers')obj={title:v('f1'),subject:v('f2'),year:v('f3'),semester:v('f4'),resource_url:v('f5')};if(table==='notices')obj={title:v('f1'),notice_date:v('f2'),content:v('f3')};if(table==='merit_lists')obj={title:v('f1'),session:v('f2'),list_number:v('f3'),resource_url:v('f4')};const {error}=await sb.from(table).insert(obj);if(error){alert(error.message);return}alert('Saved successfully!');loadData()}
+async function editItem(table,id){const {data,error}=await sb.from(table).select('*').eq('id',id).single();if(error){alert(error.message);return}let obj={};if(table==='books'){obj.title=prompt('Book name:',data.title);if(obj.title===null)return;obj.author=prompt('Author:',data.author||'')||'';obj.description=prompt('Description:',data.description||'')||'';obj.cover_url=prompt('Cover image URL:',data.cover_url||'')||'';obj.resource_url=prompt('PDF / resource URL:',data.resource_url||'')||''}if(table==='past_papers'){obj.title=prompt('Title:',data.title);if(obj.title===null)return;obj.subject=prompt('Subject:',data.subject||'')||'';obj.year=prompt('Year:',data.year||'')||'';obj.semester=prompt('Semester:',data.semester||'')||'';obj.resource_url=prompt('PDF / resource URL:',data.resource_url||'')||''}if(table==='notices'){obj.title=prompt('Title:',data.title);if(obj.title===null)return;obj.notice_date=prompt('Date:',data.notice_date||'')||'';obj.content=prompt('Notice:',data.content||'')||''}if(table==='merit_lists'){obj.title=prompt('Title:',data.title);if(obj.title===null)return;obj.session=prompt('Session:',data.session||'')||'';obj.list_number=prompt('List number:',data.list_number||'')||'';obj.resource_url=prompt('PDF / resource URL:',data.resource_url||'')||''}const {error:e}=await sb.from(table).update(obj).eq('id',id);if(e){alert(e.message);return}alert('Updated successfully!');loadData()}
 async function deleteItem(table,id){if(!confirm('Delete this item?'))return;const {error}=await sb.from(table).delete().eq('id',id);if(error){alert(error.message);return}loadData()}
 function v(id){return document.getElementById(id)?.value.trim()||''}
-
-function saveNIHGA(){
-const id=(document.getElementById('gaMeasurementId')?.value||'').trim();
-if(!/^G-[A-Z0-9]+$/i.test(id)){alert('Please enter a valid GA4 Measurement ID such as G-XXXXXXXXXX');return}
-localStorage.setItem('nih_ga_id',id);
-document.getElementById('gaMsg').textContent='Saved. GA4 will load on the next page load.';
-if(!document.getElementById('nih-ga-script')){
-const s=document.createElement('script');s.id='nih-ga-script';s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(id);document.head.appendChild(s);
-const g=document.createElement('script');g.textContent="window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','"+id+"');";document.head.appendChild(g);
-}
-}
-(function(){const id=localStorage.getItem('nih_ga_id');if(id&&!document.getElementById('nih-ga-script')){const s=document.createElement('script');s.id='nih-ga-script';s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(id);document.head.appendChild(s);const g=document.createElement('script');g.textContent="window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','"+id+"');";document.head.appendChild(g)}})();
-
-async function loadMCQSetup(){
-const s=document.getElementById('mcqSubject');if(!s)return;
-const {data,error}=await sb.from('mcqs').select('subject');
-if(error){document.getElementById('mcqSetupMsg').textContent='MCQ database is not connected yet. Create the mcqs table from Admin Panel → MCQs.';return}
-const subs=[...new Set((data||[]).map(x=>x.subject).filter(Boolean))];
-s.innerHTML='<option value="">All Subjects</option>'+subs.map(x=>`<option>${esc(x)}</option>`).join('');
-}
-async function startNIHQuiz(){
-const subject=document.getElementById('mcqSubject')?.value||'',count=parseInt(document.getElementById('mcqCount')?.value||'10',10);
-let q=sb.from('mcqs').select('*');
-if(subject)q=q.eq('subject',subject);
-const {data,error}=await q;
-const area=document.getElementById('mcqQuizArea');
-if(error){area.innerHTML='<div class="card" style="padding:18px"><b>MCQ test is not ready yet.</b><p class="muted">Create the mcqs table and add questions from the Admin Panel.</p></div>';return}
-const list=(data||[]).sort(()=>Math.random()-.5).slice(0,count);
-if(!list.length){area.innerHTML='<div class="card" style="padding:18px">No MCQs available yet.</div>';return}
-let pos=0,score=0,answered=[];
-function draw(){
-const x=list[pos];area.innerHTML=`<div class="card" style="padding:22px"><div style="display:flex;justify-content:space-between;gap:10px"><b>Question ${pos+1} of ${list.length}</b><span class="muted">${score} correct</span></div><h2 style="color:#062d58">${esc(x.question)}</h2><div id="nihOpts">${[['A',x.option_a],['B',x.option_b],['C',x.option_c],['D',x.option_d]].map(([k,v])=>`<button class="nih-qopt" data-v="${k}" style="display:block;width:100%;text-align:left;margin:9px 0;padding:14px;border:1px solid #d6e6ef;border-radius:12px;background:#fff">${k}. ${esc(v)}</button>`).join('')}</div><div id="nihExplain"></div></div>`;
-area.querySelectorAll('.nih-qopt').forEach(b=>b.onclick=()=>{if(answered[pos])return;answered[pos]=true;const ok=b.dataset.v===x.correct_answer;if(ok)score++;area.querySelectorAll('.nih-qopt').forEach(z=>{z.disabled=true;if(z.dataset.v===x.correct_answer)z.style.background='#e8f8ee';if(z===b&&!ok)z.style.background='#fff0f2'});document.getElementById('nihExplain').innerHTML=`<p class="muted"><b>${ok?'Correct!':'Incorrect.'}</b> ${esc(x.explanation||'')}</p><button class="primary" id="nihNext">${pos===list.length-1?'See Result':'Next →'}</button>`;document.getElementById('nihNext').onclick=()=>{pos++;if(pos<list.length)draw();else area.innerHTML=`<div class="card" style="padding:26px;text-align:center"><div style="font-size:48px">🎉</div><h2 style="color:#106078">Test Completed!</h2><h1>${score} / ${list.length}</h1><p class="muted">${Math.round(score/list.length*100)}% Score</p><button class="primary" onclick="startNIHQuiz()">Try Again</button></div>`})});
-}
-draw();
-}
-document.addEventListener('DOMContentLoaded',()=>setTimeout(loadMCQSetup,700));
 async function startApp(){const initial=location.hash.slice(1);if(initial==='admin'){await openAdmin();return}const safe=document.getElementById(initial)?initial:'home';show(safe);history.replaceState({screen:safe},'',safe==='home'?location.pathname:location.pathname+'#'+safe);loadData();}
 startApp();
 </script>
@@ -481,6 +329,68 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeEleme
     if(rows.length) box.innerHTML=rows.map(x=>`<div class="nih-update"><div class="type">${esc(x.type)} ${x.new?'<span class="nih-new">NEW</span>':''}</div><h3>${esc(x.title)}</h3><p>${esc(x.desc||'View the latest update on the website.')}</p></div>`).join('');
   };
   document.addEventListener('DOMContentLoaded',()=>setTimeout(renderNIHUpdates,900));
+})();
+</script>
+
+<script>
+/* ===== Nursing Information Hub V3: isolated additions ===== */
+(function(){
+  const MCQ_SQL=`create table public.mcqs (
+  id bigint generated by default as identity primary key,
+  question text not null,
+  option_a text not null,
+  option_b text not null,
+  option_c text not null,
+  option_d text not null,
+  correct_answer text not null,
+  subject text,
+  difficulty text,
+  explanation text,
+  created_at timestamptz default now()
+);`;
+  function esc3(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+  window.nihMcqAdmin=async function(){
+    if(!session){openAdmin();return}
+    document.querySelectorAll('.adminTabs button').forEach(b=>b.classList.remove('active'));
+    const area=document.getElementById('adminArea'); if(!area)return;
+    const r=await sb.from('mcqs').select('*').order('created_at',{ascending:false});
+    if(r.error){
+      area.innerHTML=`<div class="form" style="max-width:none"><h3>🧠 MCQ Management</h3><div class="card" style="padding:15px;margin-bottom:14px"><b>One-time setup required</b><p class="muted">Create the <b>mcqs</b> table in Supabase SQL Editor.</p></div><textarea class="nih-v3-sql" readonly>${esc3(MCQ_SQL)}</textarea><button class="smallBtn" style="margin-top:10px" onclick="navigator.clipboard?.writeText(this.previousElementSibling.value);alert('SQL copied!')">📋 Copy SQL</button><p class="muted" style="margin-top:10px">${esc3(r.error.message)}</p></div>`;
+      return;
+    }
+    const rows=r.data||[];
+    area.innerHTML=`<div class="form" style="max-width:none"><h3>➕ Add MCQ</h3><div class="field"><label>Question</label><textarea id="v3q"></textarea></div><div class="field"><label>Option A</label><input id="v3a"></div><div class="field"><label>Option B</label><input id="v3b"></div><div class="field"><label>Option C</label><input id="v3c"></div><div class="field"><label>Option D</label><input id="v3d"></div><div class="field"><label>Correct Answer</label><select id="v3correct"><option>A</option><option>B</option><option>C</option><option>D</option></select></div><div class="field"><label>Subject</label><input id="v3subject" placeholder="e.g. Pharmacology"></div><div class="field"><label>Difficulty</label><select id="v3difficulty"><option>Easy</option><option>Medium</option><option>Hard</option></select></div><div class="field"><label>Explanation</label><textarea id="v3explanation"></textarea></div><button class="primary" onclick="nihAddMCQ()">＋ Add MCQ</button></div><div style="margin-top:18px">${rows.length?rows.map(x=>`<div class="adminRow"><div><b>${esc3(x.question)}</b><div class="muted">${esc3(x.subject||'')} ${x.difficulty?'• '+esc3(x.difficulty):''}</div></div><div><button class="danger" onclick="nihDeleteMCQ(${x.id})">Delete</button></div></div>`).join(''):'<div class="card" style="padding:18px"><p class="muted">No MCQs added yet.</p></div>'}</div>`;
+  };
+  window.nihAddMCQ=async function(){
+    const obj={question:v3('v3q'),option_a:v3('v3a'),option_b:v3('v3b'),option_c:v3('v3c'),option_d:v3('v3d'),correct_answer:v3('v3correct'),subject:v3('v3subject'),difficulty:v3('v3difficulty'),explanation:v3('v3explanation')};
+    if(!obj.question||!obj.option_a||!obj.option_b||!obj.option_c||!obj.option_d){alert('Please fill the question and all four options.');return}
+    const {error}=await sb.from('mcqs').insert(obj);if(error){alert(error.message);return}alert('MCQ added successfully!');nihMcqAdmin();
+  };
+  window.nihDeleteMCQ=async function(id){if(!confirm('Delete this MCQ?'))return;const {error}=await sb.from('mcqs').delete().eq('id',id);if(error){alert(error.message);return}nihMcqAdmin()};
+  function v3(id){return document.getElementById(id)?.value.trim()||''}
+
+  window.nihAnalyticsAdmin=function(){
+    if(!session){openAdmin();return}
+    document.querySelectorAll('.adminTabs button').forEach(b=>b.classList.remove('active'));
+    const area=document.getElementById('adminArea');if(!area)return;
+    const id=localStorage.getItem('nih_ga_id')||'';
+    area.innerHTML=`<div class="form" style="max-width:none"><h3>📊 Website Analytics</h3><p class="muted">For proper visitor analytics, connect Google Analytics 4. You will need your GA4 Measurement ID.</p><div class="nih-v3-analytics"><div class="nih-v3-stat"><b>GA4</b><span>Visitors & page views</span></div><div class="nih-v3-stat"><b>Search</b><span>Google Search Console</span></div><div class="nih-v3-stat"><b>Traffic</b><span>Sources & devices</span></div></div><div class="field"><label>GA4 Measurement ID</label><input id="nihGaId" placeholder="G-XXXXXXXXXX" value="${esc3(id)}"></div><button class="primary" onclick="nihSaveGA()">💾 Save Analytics ID</button><p id="nihGaMsg" class="muted" style="margin-top:10px"></p></div>`;
+  };
+  window.nihSaveGA=function(){
+    const id=v3('nihGaId').toUpperCase();if(!/^G-[A-Z0-9]+$/.test(id)){alert('Enter a valid GA4 Measurement ID, e.g. G-XXXXXXXXXX');return}
+    localStorage.setItem('nih_ga_id',id);nihLoadGA(id);document.getElementById('nihGaMsg').textContent='Saved. Analytics is enabled for this site.';
+  };
+  function nihLoadGA(id){if(!id||document.getElementById('nihGA4'))return;const s=document.createElement('script');s.id='nihGA4';s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(id);document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',id)}
+  const saved=localStorage.getItem('nih_ga_id');if(saved)nihLoadGA(saved);
+
+  window.nihLoadMCQSubjects=async function(){const s=document.getElementById('nihMcqSubject');if(!s)return;const {data,error}=await sb.from('mcqs').select('subject');if(error){document.getElementById('nihMcqMessage').textContent='MCQ database is not set up yet. Admin Panel → MCQs has the setup SQL.';return}const subs=[...new Set((data||[]).map(x=>x.subject).filter(Boolean))];s.innerHTML='<option value="">All Subjects</option>'+subs.map(x=>`<option value="${esc3(x)}">${esc3(x)}</option>`).join('')};
+  window.nihStartQuiz=async function(){
+    const subject=v3('nihMcqSubject'),count=parseInt(v3('nihMcqCount')||'10',10);let q=sb.from('mcqs').select('*');if(subject)q=q.eq('subject',subject);const {data,error}=await q;const area=document.getElementById('nihQuizArea');if(error){area.innerHTML='<div class="card" style="padding:18px"><b>MCQ test is not ready yet.</b><p class="muted">Create the mcqs table from Admin Panel → MCQs.</p></div>';return}const list=(data||[]).sort(()=>Math.random()-.5).slice(0,count);if(!list.length){area.innerHTML='<div class="card" style="padding:18px">No MCQs available yet.</div>';return}
+    let pos=0,score=0;function draw(){const x=list[pos];area.innerHTML=`<div class="card" style="padding:22px"><div style="display:flex;justify-content:space-between"><b>Question ${pos+1} of ${list.length}</b><span class="muted">Score: ${score}</span></div><h2 style="color:#062d58">${esc3(x.question)}</h2><div>${[['A',x.option_a],['B',x.option_b],['C',x.option_c],['D',x.option_d]].map(o=>`<button class="nih-v3-option" data-a="${o[0]}">${o[0]}. ${esc3(o[1])}</button>`).join('')}</div><div id="nihExplain"></div></div>`;area.querySelectorAll('.nih-v3-option').forEach(btn=>btn.onclick=()=>{if(area.dataset.answered==='1')return;area.dataset.answered='1';const ok=btn.dataset.a===x.correct_answer;if(ok)score++;area.querySelectorAll('.nih-v3-option').forEach(b=>{b.disabled=true;if(b.dataset.a===x.correct_answer)b.classList.add('correct');if(b===btn&&!ok)b.classList.add('wrong')});document.getElementById('nihExplain').innerHTML=`<p class="muted"><b>${ok?'✅ Correct':'❌ Incorrect'}</b> ${esc3(x.explanation||'')}</p><button class="primary" id="nihNext">${pos===list.length-1?'See Result':'Next →'}</button>`;document.getElementById('nihNext').onclick=()=>{pos++;if(pos<list.length){area.dataset.answered='0';draw()}else area.innerHTML=`<div class="card" style="padding:26px;text-align:center"><div style="font-size:48px">🎉</div><h2 style="color:#106078">Test Completed!</h2><h1>${score} / ${list.length}</h1><p class="muted">Percentage: ${Math.round(score/list.length*100)}%</p><button class="primary" onclick="nihStartQuiz()">Try Again</button></div>`}})}draw();
+  };
+
+  async function nihUpdates(){const box=document.getElementById('nihLatestUpdates');if(!box)return;const [n,m]=await Promise.all([sb.from('notices').select('*').order('created_at',{ascending:false}).limit(3),sb.from('merit_lists').select('*').order('created_at',{ascending:false}).limit(3)]);const rows=[...(n.data||[]).map(x=>({t:'Notice',title:x.title,desc:x.content})),...(m.data||[]).map(x=>({t:'Merit List',title:x.title,desc:(x.session||'')+' '+(x.list_number||'')}))].slice(0,6);if(rows.length)box.innerHTML=rows.map(x=>`<div class="nih-v3-card"><b style="color:#106078">${esc3(x.t)} <span class="nih-new">NEW</span></b><h3>${esc3(x.title)}</h3><p>${esc3(x.desc||'')}</p></div>`).join('')}
+  document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>{nihLoadMCQSubjects();nihUpdates()},700));
 })();
 </script>
 </body>
