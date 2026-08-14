@@ -184,7 +184,12 @@ section h2,section h3{color:var(--nih)}footer{background:linear-gradient(135deg,
 @media(max-width:800px){.nih-v3-grid,.nih-v3-analytics{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.nih-v3-grid,.nih-v3-analytics{grid-template-columns:1fr}}
 </style>
-</head>
+<style>
+.nih-theme-toggle{position:fixed;right:16px;bottom:16px;z-index:99999;border:0;border-radius:999px;padding:11px 15px;background:#106078;color:#fff;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+.nih-header-safe,.nih-header-safe a,.nih-header-safe button{color:#106078!important}.nih-header-safe .hamburger span,.nih-header-safe .menu-toggle span{background:#106078!important}
+body.nih-dark{background:#071a22!important;color:#eaf6f8!important}body.nih-dark header,body.nih-dark nav,body.nih-dark .card,body.nih-dark section,body.nih-dark .adminRow{background:#102b35!important;color:#eaf6f8!important;border-color:#214955!important}body.nih-dark p,body.nih-dark label{color:#b8d0d6!important}body.nih-dark a,body.nih-dark h1,body.nih-dark h2,body.nih-dark h3{color:#7fd3e5!important}body.nih-dark input,body.nih-dark select,body.nih-dark textarea{background:#0b222b!important;color:#eaf6f8!important;border-color:#2d5965!important}
+.nih-latest-safe{max-width:1100px;margin:24px auto;padding:0 16px}.nih-latest-safe .panel{padding:20px;border-radius:20px;background:#fff;border:1px solid rgba(16,96,120,.12);box-shadow:0 10px 28px rgba(16,96,120,.07)}.nih-new-safe{display:inline-block;margin-left:7px;padding:3px 8px;border-radius:999px;background:#b67283;color:#fff;font-size:11px;font-weight:900;animation:nihSafeBlink 1s infinite}@keyframes nihSafeBlink{0%,100%{opacity:1}50%{opacity:.25}}body.nih-dark .nih-latest-safe .panel{background:#102b35;border-color:#214955}
+</style></head>
 <body>
 <div class="topbar"><div class="topbar-inner"><div class="top-left"><span>✉ aq0071727@gmail.com</span><span>|</span><span>☎ 03099717978</span></div><div class="socials"><span>f</span><span>◎</span><span>▶</span><span>◉</span></div></div></div>
 <header><div class="nav"><div class="brand" onclick="go('home')"><div class="logo">♡</div><div><b>Nursing Information Hub</b><small>Learn • Prepare • Succeed</small></div></div><div class="navlinks"><button data-screen="home" onclick="go('home')">Home</button><button data-screen="study" onclick="go('study')">Study Resources⌄</button><button data-screen="books" onclick="go('books')">Books</button><button data-screen="papers" onclick="go('papers')">Past Papers</button><button data-screen="notice" onclick="go('notice')">Information⌄</button><button data-screen="contact" onclick="go('contact')">Contact</button><button data-screen="mcqs" onclick="go('mcqs')">🧠 MCQs</button></div><button class="menu" onclick="toggleMenu()">☰</button></div></header>
@@ -393,5 +398,5 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeEleme
   document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>{nihLoadMCQSubjects();nihUpdates()},700));
 })();
 </script>
-</body>
+<script>(function(){function apply(){var d=localStorage.getItem("nih_dark_mode")==="1";document.body.classList.toggle("nih-dark",d);var b=document.getElementById("nihThemeToggle");if(b)b.textContent=d?"☀️ Light Mode":"🌙 Dark Mode"}window.nihToggleDark=function(){localStorage.setItem("nih_dark_mode",document.body.classList.contains("nih-dark")?"0":"1");apply()};document.addEventListener("DOMContentLoaded",function(){var b=document.createElement("button");b.id="nihThemeToggle";b.className="nih-theme-toggle";b.type="button";b.onclick=window.nihToggleDark;document.body.appendChild(b);var x=document.querySelector("header");if(x)x.classList.add("nih-header-safe");apply()})})();</script></body>
 </html>
